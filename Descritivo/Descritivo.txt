@@ -64,6 +64,7 @@ app
 |   ├── evento.html
 |   ├── home.html
 |   ├── index.html
+|   ├── listar_eventos.html => Falta fazero layout desta página
 |   ├── login.html
 |   ├── registro.html
 |   └── sobre.html
