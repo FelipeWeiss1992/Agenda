@@ -1,0 +1,75 @@
+        * -------------------------------------- *
+        * Modelagem do banco de dados            *
+        * -------------------------------------- *
+
+
+Tabelas
+|
+├── tbUsuario
+|   ├── id ---------------- ( chave primária    )
+|   ├── nome -------------- ( string            )
+|   ├── data_nascimento --- ( data_eveto        )
+|   ├── cpf --------------- ( string            )
+|   ├── username ---------- ( string            )
+|   └── senha ------------- ( string            )
+|
+└── tbEvento
+    ├── id ---------------- ( chave primária    )
+    ├── data_eveto -------- ( date              )
+    ├── titulo ------------ ( string            )
+    ├── descricao --------- ( string            )
+    ├── publico ----------- ( booleano          )
+    └── id_usuario -------- ( chave estrangeira )
+
+
+        * -------------------------------------- *
+        * Script para criação do banco de dados  *
+        * -------------------------------------- *
+
+
+CREATE TABLE tb_usuario (
+    id serial,
+    nome VARCHAR(50) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    cpf VARCHAR(11) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    senha VARCHAR(256) NOT NULL,
+PRIMARY KEY (id));
+
+    
+CREATE TABLE tb_evento (
+    id serial,
+    data_evento DATE NOT NULL,
+    titulo VARCHAR(50) NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
+    publico BOOL NOT NULL,
+    id_usuario INT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (id_usuario)
+    REFERENCES usuario (id));
+
+
+        * -------------------------------------- *
+        * Estrutura de arquivos e pastas         *
+        * -------------------------------------- *
+
+app
+├── models 
+|   ├── evento.py
+|   └── usuario.py
+├── static
+|   └── style.css
+├── templates
+|   ├── calendario.html
+|   ├── evento.html
+|   ├── home.html
+|   ├── login.html
+|   ├── registro.html
+|   └── sobre.html
+├── views
+|   └── view.py  
+├── static
+|   └── style.css
+├── banco.py
+├── config.py
+└── main.py
