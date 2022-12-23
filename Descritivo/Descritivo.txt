@@ -63,6 +63,7 @@ app
 |   ├── calendario.html
 |   ├── evento.html
 |   ├── home.html
+|   ├── index.html
 |   ├── login.html
 |   ├── registro.html
 |   └── sobre.html

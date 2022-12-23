@@ -26,11 +26,11 @@ if conn is not None:
                         cpf VARCHAR(11) NOT NULL,
                         username VARCHAR(50) NOT NULL,
                         senha VARCHAR(256) NOT NULL,
-                      PRIMARY KEY (id));""")
+                      PRIMARY KEY(id));""")
 
     print("Tabela USUARIO criada.")
     
-    cursor.execute("""CREATE TABLE tb_ evento (
+    cursor.execute("""CREATE TABLE tb_evento (
                         id serial,
                         data_evento DATE NOT NULL,
                         titulo VARCHAR(50) NOT NULL,
@@ -39,7 +39,7 @@ if conn is not None:
                         id_usuario INT NOT NULL,
                       PRIMARY KEY (id),
                       FOREIGN KEY (id_usuario)
-                        REFERENCES usuario (id));""")
+                        REFERENCES tb_usuario (id));""")
         
     print("Tabela EVENTO criada.")
 

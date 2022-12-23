@@ -38,21 +38,21 @@ FUNÇÃO	                DESCRIÇÃO
 iterweekdays()	        Retorna um iterador para os números dos
                         dias da semana que serão usados por uma semana
     
-itermonthdates()	    Retorna um iterador para o mês (1-12) no ano
+itermonthdates()        Retorna um iterador para o mês (1-12) no ano
 
-itermonthdays()	        Retorna um iterador de um mês e um ano especificados
+itermonthdays()         Retorna um iterador de um mês e um ano especificados
 
-itermonthdays2()	    O método é usado para obter um iterador para o mês
+itermonthdays2()        O método é usado para obter um iterador para o mês
                         do ano semelhante a itermonthdates(). Os dias
                         retornados serão tuplas compostas por um número do
                         dia do mês e um número do dia da semana.
 
-itermonthdays3()	    Retorna um iterador para o mês do ano semelhante a
+itermonthdays3()        Retorna um iterador para o mês do ano semelhante a
                         itermonthdates(), mas não restrito pelo intervalo
                         datetime.date. Os dias devolvidos serão tuplas
                         compostas por um ano, um mês e um dia do mês.
 
-itermonthdays4()	    Retorna um iterador para o mês do ano semelhante a
+itermonthdays4()        Retorna um iterador para o mês do ano semelhante a
                         itermonthdates(), mas não restrito pelo intervalo
                         datetime.date. Os dias devolvidos serão tuplas 
                         compostas por um ano, um mês, um dia do mês e um
