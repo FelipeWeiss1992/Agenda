@@ -30,3 +30,19 @@ def sobre():
 def login():
 
     return render_template("login.html", titulo = "Login")
+
+
+# Rota para autenticar usuários
+@app.route("/autenticar", methods = ["post"])
+def autenticar():
+
+    usuario = Usuario.query.filter_by(username = request.form["input_usuario"]).first()
+
+    if usuario:
+        if request.form["input_senha"] == usuario.senha:
+
+
+            return redirect(url_for("index"))
+    else:
+
+       return redirect(url_for("login"))

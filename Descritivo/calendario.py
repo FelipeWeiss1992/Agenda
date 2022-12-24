@@ -67,7 +67,7 @@ monthdays2calendar()	Costumava obter uma lista das semanas no mês do
 calendário do dia       Costumava obter uma lista das semanas no mês do ano
 do mês                  como semanas inteiras
 
-yeardatescalendar()	    Costumava obter uma lista das semanas no mês do ano
+yeardatescalendar()     Costumava obter uma lista das semanas no mês do ano
                         como semanas inteiras
 yeardays2calendar() 	Usado para obter os dados do ano especificado. As
                         entradas nas listas da semana são tuplas de números
@@ -88,13 +88,13 @@ FUNÇÃO                  DESCRIÇÃO
 formatmonth()	        O método é usado para obter o calendário do mês em uma
                         string multilinha
 
-prmonth()	            O método é usado para imprimir o calendário de um mês
+prmonth()               O método é usado para imprimir o calendário de um mês
                         conforme retornado por formatmonth()
 
-formatyear()	        O método é usado para obter o calendário de m colunas
+formatyear()            O método é usado para obter o calendário de m colunas
                         para um ano inteiro como uma string de várias linhas
 
-pryear()	            O método é usado para imprimir o calendário de um ano
+pryear()                O método é usado para imprimir o calendário de um ano
                         inteiro conforme retornado por formatmonth()
 
  
@@ -106,13 +106,13 @@ com suas necessidades.
 
 
 FUNÇÃO	                DESCRIÇÃO
-formatmonth()	        O método é usado para obter o calendário do mês como uma
+formatmonth()           O método é usado para obter o calendário do mês como uma
                         tabela HTML
 
-formatyear()	        O método é usado para obter o calendário do ano como uma
+formatyear()            O método é usado para obter o calendário do ano como uma
                         tabela HTML.
 
-formatyearpage()	    O método é usado para obter o calendário do ano como uma
+formatyearpage()        O método é usado para obter o calendário do ano como uma
                         página HTML completa
 
  
@@ -123,39 +123,39 @@ funções:
 
 
 FUNÇÃO	                DESCRIÇÃO
-setfirstweekday()	    A função define o número de início do dia da semana
+setfirstweekday()       A função define o número de início do dia da semana
 
-primeiro dia da semana()	A função retorna o primeiro número do dia da semana.
+primeiro dia da semana()    A função retorna o primeiro número do dia da semana.
                             Por padrão 0 (segunda-feira)
 
-isleap()	            A função verifica se o ano mencionado no argumento é
+isleap()                A função verifica se o ano mencionado no argumento é
                         bissexto ou não
 
-dias bissextos()	    A função retorna o número de dias bissextos entre os
+dias bissextos()        A função retorna o número de dias bissextos entre os
                         anos especificados em argumentos
 
-dia da semana()	        A função retorna o número do dia da semana (0 é segunda-feira)
+dia da semana()         A função retorna o número do dia da semana (0 é segunda-feira)
                         da data especificada em seus argumentos
 
-cabeçalho da semana()	Retorna um cabeçalho contendo nomes abreviados dos dias da semana
+cabeçalho da semana()   Retorna um cabeçalho contendo nomes abreviados dos dias da semana
 
-intervalo de meses()	A função retorna dois inteiros, primeiro, o número do dia
+intervalo de meses()    A função retorna dois inteiros, primeiro, o número do dia
                         inicial da semana (0 como segunda-feira), segundo, o número
                         de dias no mês
 
-monthcalendar()	        Retorna uma matriz que representa o calendário de um mês.
+monthcalendar()         Retorna uma matriz que representa o calendário de um mês.
                         Cada linha representa uma semana; dias fora do mês são
                         representados por zeros
 
-prmonth()	            A função também imprime o mês do ano específico, mas não há
+prmonth()               A função também imprime o mês do ano específico, mas não há
                         necessidade de operação de "impressão" para executar isso
 
-mês()	                A função imprime o mês de um ano específico mencionado em
+mês()                   A função imprime o mês de um ano específico mencionado em
                         argumentos
 
-prcal()	                A função também imprime o calendário do ano específico, mas
+prcal()                 A função também imprime o calendário do ano específico, mas
                         não há necessidade de operação de "impressão" para executar isso
 
-calendário()	        Função exibe o ano, largura de caracteres, não. de linhas por
+calendário()            Função exibe o ano, largura de caracteres, não. de linhas por
                         semana e separações de coluna.
 """

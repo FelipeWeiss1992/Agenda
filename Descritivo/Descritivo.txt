@@ -27,7 +27,7 @@ Tabelas
         * -------------------------------------- *
 
 
-CREATE TABLE tb_usuario (
+CREATE TABLE usuario (
     id serial,
     nome VARCHAR(50) NOT NULL,
     data_nascimento DATE NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE tb_usuario (
 PRIMARY KEY (id));
 
     
-CREATE TABLE tb_evento (
+CREATE TABLE evento (
     id serial,
     data_evento DATE NOT NULL,
     titulo VARCHAR(50) NOT NULL,

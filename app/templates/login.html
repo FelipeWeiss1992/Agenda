@@ -11,13 +11,23 @@
 
     <body>
 
-        <p>Página para fazer o Login, ainda a fazer</p>
-        <div>
-            <button type="button" class="btn btn-warning">Registre-se</button>
-        </div>
-        <div>
-            <p class="btn btn-warning"><a href="/">Cancelar</a></p>
-        </div>
+        <form action="{{ url_for('autenticar') }}" method="post">
+
+
+            <div class="col-md-2 mb-3">
+                <label for="usuario">Username</label>
+                <input type="text" class="form-control" id="usuario" name="input_usuario" placeholder="Username">
+            </div>
+            <div class="col-md-2 mb-3">
+                <label for="c_senha">Senha</label>
+                <input type="password" class="form-control" id="c_senha" name="input_senha" placeholder="Senha">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <p class="btn btn-primary"><a href="/">Cancelar</a></p>
+            </div>
+
+        </form>
 
     </body>
 </html>

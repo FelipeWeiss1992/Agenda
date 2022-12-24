@@ -19,7 +19,7 @@ if conn is not None:
 
     cursor = conn.cursor()
     
-    cursor.execute("""CREATE TABLE tb_usuario (
+    cursor.execute("""CREATE TABLE usuario (
                         id serial,
                         nome VARCHAR(50) NOT NULL,
                         data_nascimento DATE NOT NULL,
@@ -30,7 +30,7 @@ if conn is not None:
 
     print("Tabela USUARIO criada.")
     
-    cursor.execute("""CREATE TABLE tb_evento (
+    cursor.execute("""CREATE TABLE evento (
                         id serial,
                         data_evento DATE NOT NULL,
                         titulo VARCHAR(50) NOT NULL,
@@ -39,7 +39,7 @@ if conn is not None:
                         id_usuario INT NOT NULL,
                       PRIMARY KEY (id),
                       FOREIGN KEY (id_usuario)
-                        REFERENCES tb_usuario (id));""")
+                        REFERENCES usuario (id));""")
         
     print("Tabela EVENTO criada.")
 
