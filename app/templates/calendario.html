@@ -3,7 +3,24 @@
 
         <main class="container">
 
-            <p>Aqui o Calendário de eventos, por fazer ainda</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        {% for dias_ext in dias_da_semana %}
+                            <th scope="col">{{ dias_ext }}</th>
+                        {% endfor %}                    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for semanas in calDays %}
+                        <tr>
+                        {% for dias in semanas %}
+                            <td><a href="/">{{ dias }}</a></td>                                
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}            
+                </tbody>
+            </table>
 
         </main>
         

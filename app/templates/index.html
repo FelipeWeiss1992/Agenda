@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
         <!-- Apagar a linha acima e substituir por essa. <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}"> -->
         <title>{{ titulo }}</title>
     </head>
@@ -24,11 +25,9 @@
                     <a class="nav-link" href="/sobre">Sobre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/login">Login</a> <!-- Tentat mudar de login para logoout depois que o usuário se logar. -->
                 </li>
-                <li class="nav-item">
-                    <p></p>
-                </li>
+                <!-- Adicionar um campo que apareça o usuário logado. -->
             </ul>
 
         </header>

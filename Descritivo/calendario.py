@@ -1,26 +1,37 @@
 import calendar
+import datetime
 
+data = datetime.datetime.now()
+
+print(f"Imprime o ano {data.year}")
+print(f"Imprime a mês {data.month}")
+print(f"Imprime o dia {data.day}")
 
 # Exemplo 1: Exibir o calendário de determinado mês.
 
-ano = 2022
-mes = 12
-
-resultado_mes = calendar.month(ano, mes)
-print(resultado_mes)
+#resultado_mes = calendar.month(data.year, data.month)
+#print(resultado_mes)
 
 
 # Exemplo 2: Exibir o calendário de um determinado ano.
     
-print ("O calendário do ano 2022 é:")  
-print (calendar.calendar(2022, 2, 1, 6))
+#print ("O calendário do ano 2022 é:")  
+#print (calendar.calendar(2022, 2, 1, 6))
 
 
 # Exemplo 3: Exibir o calendário de determinado mês em formato HTML. 
 
-tc = calendar.HTMLCalendar(firstweekday = 0)
+tc = calendar.HTMLCalendar(firstweekday = 6)
+print(tc.formatmonth(data.year, data.month))
 
-print(tc.formatmonth(2022, 12))
+
+# Exemplo 4: 
+cal = calendar.Calendar(firstweekday=6)
+print(f"Aqui a variavel cal {cal}")
+dias_da_semana = ("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado")
+print(f"Aqui dias da semana {dias_da_semana}")
+calDays = cal.monthdayscalendar(data.year, data.month)
+print(f"Aqui a variavel calDays {calDays}")
 
 
 """

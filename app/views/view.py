@@ -2,6 +2,8 @@ from flask import render_template, request, redirect, flash, url_for,session
 from main import db, app
 from models.evento import Evento
 from models.usuario import Usuario
+import calendar
+import datetime
 
 
 # Renderização da página home.html
@@ -15,7 +17,14 @@ def index():
 @app.route("/calendario")
 def calendario():
 
-    return render_template("calendario.html", titulo = "Calendário de eventos")
+    data = datetime.datetime.now()
+    cal = calendar.Calendar(firstweekday=6)
+
+    dias_da_semana = ("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado")
+
+    calDays = cal.monthdayscalendar(data.year, data.month)
+
+    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, aux = 0, dias_da_semana = dias_da_semana )
 
 
 # Renderização da página sobre.html
