@@ -29,20 +29,65 @@ def sobre():
 @app.route("/login")
 def login():
 
-    return render_template("login.html", titulo = "Login")
+    proximo = request.args.get("proximo")
+
+    return render_template("login.html", titulo = "Login", proximo = proximo)
 
 
-# Rota para autenticar usuários
+# Rota para autenticar usuários.
 @app.route("/autenticar", methods = ["post"])
 def autenticar():
 
     usuario = Usuario.query.filter_by(username = request.form["input_usuario"]).first()
 
     if usuario:
+        print(usuario)
         if request.form["input_senha"] == usuario.senha:
 
+            session = usuario.username
 
-            return redirect(url_for("index"))
+            proxima_pagina = request.form["proximo"]
+
+            return redirect(proxima_pagina)
     else:
 
-       return redirect(url_for("login"))
+        return redirect(url_for("login"))
+
+
+# Renderização da página registro.html
+@app.route("/registro")
+def registro():
+
+    return render_template("registro.html", titulo = "Inscreva-se")
+
+
+# Rota para cadastrar novo usuário.
+@app.route("/cadastrar_usuario", methods = ["post"])
+def cadastrar_usuario():
+
+    # Criando variáveis locais.
+    i_nome = request.form["nome"]
+    i_nascimento = request.form["data_nascimento"]
+    i_cpf = request.form["cpf"] # Aplicar filtro para retirar os "." e o "-", estouro de campo no banco de dados.
+    i_nickname = request.form["username"]
+    i_senha = request.form["senha"]
+
+    # Primeiro parametro vindo do Bando de Dados e segundo vindo do Formulário HTML.
+    usuario = Usuario.query.filter_by(nome = i_nome).first()
+
+
+    if usuario:
+        # Usuário já cadastrado.
+        if request.form["nome"] == usuario.nome:
+            print("Usuário já cadastrado.")
+
+            return redirect(url_for("registro"))
+        else:
+            novo_usuario = Usuario(nome = i_nome, data_nascimento = i_nascimento, cpf = i_cpf, username = i_nickname, senha = i_senha)
+            db.session.add(novo_usuario)
+            db.session.commit()
+            print("Usuário cadastrado com sucesso.")
+
+            return redirect(url_for("login"))
+       
+    return redirect(url_for("registro"))

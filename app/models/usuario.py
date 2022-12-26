@@ -11,3 +11,5 @@ class Usuario(db.Model):
 
 def __repr__(self):
     return '<Name %r>' % self.name
+
+from main import db
