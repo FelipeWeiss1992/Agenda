@@ -13,20 +13,6 @@ def index():
     return render_template("home.html", titulo = "Agenda de Eventos")
 
 
-# Renderização da página calendario.html
-@app.route("/calendario")
-def calendario():
-
-    data = datetime.datetime.now()
-    cal = calendar.Calendar(firstweekday=6)
-
-    dias_da_semana = ("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado")
-
-    calDays = cal.monthdayscalendar(data.year, data.month)
-
-    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, aux = 0, dias_da_semana = dias_da_semana )
-
-
 # Renderização da página sobre.html
 @app.route("/sobre")
 def sobre():
@@ -47,13 +33,13 @@ def login():
 @app.route("/autenticar", methods = ["post"])
 def autenticar():
 
-    usuario = Usuario.query.filter_by(username = request.form["input_usuario"]).first()
+    lo_usuario = Usuario.query.filter_by(username = request.form["input_usuario"]).first()
 
-    if usuario:
-        print(usuario)
-        if request.form["input_senha"] == usuario.senha:
+    if lo_usuario:
+        print(lo_usuario)
+        if request.form["input_senha"] == lo_usuario.senha:
 
-            session = usuario.username
+            session = lo_usuario.username
 
             proxima_pagina = request.form["proximo"]
 
@@ -61,6 +47,12 @@ def autenticar():
     else:
 
         return redirect(url_for("login"))
+
+
+# Rota para logoout.
+@app.route("/logout")
+def logout():
+    pass
 
 
 # Renderização da página registro.html
@@ -75,28 +67,56 @@ def registro():
 def cadastrar_usuario():
 
     # Criando variáveis locais.
-    i_nome = request.form["nome"]
-    i_nascimento = request.form["data_nascimento"]
-    i_cpf = request.form["cpf"] # Aplicar filtro para retirar os "." e o "-", estouro de campo no banco de dados.
-    i_nickname = request.form["username"]
-    i_senha = request.form["senha"]
+    lo_nome = request.form["nome"]
+    lo_nascimento = request.form["data_nascimento"]
+    lo_cpf = request.form["cpf"] # Aplicar filtro para retirar os "." e o "-", estouro de campo no banco de dados.
+    lo_nickname = request.form["username"]
+    lo_senha = request.form["senha"]
 
     # Primeiro parametro vindo do Bando de Dados e segundo vindo do Formulário HTML.
-    usuario = Usuario.query.filter_by(nome = i_nome).first()
+    lo_usuario = Usuario.query.filter_by(nome = lo_nome).first()
 
-
-    if usuario:
+    if lo_usuario:
         # Usuário já cadastrado.
-        if request.form["nome"] == usuario.nome:
+        if request.form["nome"] == lo_usuario.nome:
             print("Usuário já cadastrado.")
 
             return redirect(url_for("registro"))
         else:
-            novo_usuario = Usuario(nome = i_nome, data_nascimento = i_nascimento, cpf = i_cpf, username = i_nickname, senha = i_senha)
-            db.session.add(novo_usuario)
+            lo_novo_usuario = Usuario(nome = lo_nome, data_nascimento = lo_nascimento, cpf = lo_cpf, username = lo_nickname, senha = lo_senha)
+            db.session.add(lo_novo_usuario)
             db.session.commit()
             print("Usuário cadastrado com sucesso.")
 
             return redirect(url_for("login"))
        
     return redirect(url_for("registro"))
+
+
+# Renderização da página calendario.html
+@app.route("/calendario")
+def calendario():
+
+    data = datetime.datetime.now()
+    cal = calendar.Calendar(firstweekday=6)
+
+    dias_da_semana = ("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado")
+
+    calDays = cal.monthdayscalendar(data.year, data.month)
+
+    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana )
+
+
+# Renderização da página evento.html
+@app.route("/evento")
+def evento():
+
+    return render_template("evento.html", titulo = "Cadastro de eventos")
+
+
+# Rota para cadastrar novo evento.
+@app.route("/cadastrar_evento/<String:dia>")
+def cadastrar_evento(dia):
+    pass
+
+@app.route("/editar/<int:id>")
