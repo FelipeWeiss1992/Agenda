@@ -5,19 +5,19 @@
 
                 <form>
 
-                <div class="form-group col-md-3">
-                        <label for="i_data">Data do evento</label> <!-- A data deverá vir do sistema -->
-                        <input type="date" class="form-control" id="i_nome" name="c_nome" placeholder="">
-                </div>
-                <div class="form-group col-md-2">
-                        <label for="i_titulo">Título</label>
-                        <input type="text" class="form-control" id="i_titulo" name="c_titulo" placeholder="Título">
-                </div>
-                <div class="form-group col-md-2">
-                        <label for="i_descricao">Descrição</label>
-                        <input type="text" class="form-control" id="i_descricao" name="c_descricao" placeholder="Bescrição">
-                </div>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                        <div class="form-group col-md-3">
+                                <label for="i_data">Data do evento</label> <!-- A data deverá vir do sistema -->
+                                <input type="date" class="form-control" id="i_data" name="c_data" value="{{ completo }}"><!--Padrão yyyy-mm-dd -->
+                        </div>
+                        <div class="form-group col-md-2">
+                                <label for="i_titulo">Título</label>
+                                <input type="text" class="form-control" id="i_titulo" name="c_titulo" placeholder="Título">
+                        </div>
+                        <div class="form-group col-md-2">
+                                <label for="i_descricao">Descrição</label>
+                                <input type="text" class="form-control" id="i_descricao" name="c_descricao" placeholder="Descrição">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
 
         </main>

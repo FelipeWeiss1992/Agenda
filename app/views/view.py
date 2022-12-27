@@ -104,19 +104,20 @@ def calendario():
 
     calDays = cal.monthdayscalendar(data.year, data.month)
 
-    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana )
+    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month)
 
 
 # Renderização da página evento.html
-@app.route("/evento")
-def evento():
+@app.route("/evento/<string:dia>/<string:mes>/<string:ano>")
+def evento(dia, mes, ano):
 
-    return render_template("evento.html", titulo = "Cadastro de eventos")
+    completo = f"{ano}-{mes}-{dia}"
+
+    return render_template("evento.html", titulo = "Cadastro de eventos", completo = completo)
 
 
 # Rota para cadastrar novo evento.
-@app.route("/cadastrar_evento/<String:dia>")
+@app.route("/cadastrar_evento/<dia>")
 def cadastrar_evento(dia):
+    print(dia)
     pass
-
-@app.route("/editar/<int:id>")

@@ -75,3 +75,48 @@ app
 ├── banco.py
 ├── config.py
 └── main.py
+
+
+def pega_dados():
+    import json
+    with open('config.json') as f:
+        return json.load(f)
+
+@app.route('/<key>', methods = ['POST'])
+def predict(key):
+    config = pega_dados()
+    try:
+        model = config[key]['model']
+        load = config[key]['load']
+        threshold = config[key]['threshold']
+    except Exception as e:
+        print(e)
+        return abort(404, e)
+
+    try:
+        information = request.data
+    except Exception as e:
+        print(e)
+        return abort(400, e)
+
+    try:
+        results_inventory = predict.pred(information)
+        inventory = set_inventory(results_inventory)
+        return jsonify(inventory)
+   except Exception as e:
+        print(e)
+        return abort(500, e)
+
+
+
+, id=pessoa.id passar como parametro
+<a href="{{ url_for('editar', id=pessoa.id ) }}">Editar</a>
+
+/posts/{id}
+
+@app.route("/order/from/<string:order_from>/to/<string:order_to>", methods=["GET"])
+
+@app.route('/save_info/<filepath>', methods=['GET', 'POST'])
+def save_info(filepath):
+  if request.method == 'POST' or filepath:
+    ...

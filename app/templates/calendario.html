@@ -4,6 +4,9 @@
         <main class="container">
 
             <table class="table">
+                <p>mes {{ mes }}</p>
+                <p>ano {{ ano }}</p>
+
                 <thead>
                     <tr>
                         {% for dias_ext in dias_da_semana %}
@@ -15,7 +18,7 @@
                     {% for semanas in calDays %}
                         <tr>
                         {% for dias in semanas %}
-                            <td id="i_dia{{ dias }}" name="c_dia{{ dias }}"><a href="/evento">{{ dias }}</a></td>                                
+                            <td id="i_dia{{ dias }}" name="c_dia{{ dias }}"><a href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>                                
                         {% endfor %}
                         </tr>
                     {% endfor %}            
@@ -25,7 +28,3 @@
         </main>
         
 {% endblock %}
-
-
-, id=pessoa.id passar como parametro
-<a href="{{ url_for('editar', id=pessoa.id ) }}">Editar</a>
