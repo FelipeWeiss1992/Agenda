@@ -54,6 +54,7 @@ def autenticar():
 def logout():
 
     session["usuario_logado"] = None
+    print(session)
 
     return redirect(url_for("index"))
 
@@ -99,14 +100,12 @@ def calendario():
 
         return redirect(url_for("login", proximo = url_for("calendario")))
     else:
-        
+
         data = datetime.datetime.now()
         cal = calendar.Calendar(firstweekday=6)
 
         dias_da_semana = ("Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb")
-
         calDays = cal.monthdayscalendar(data.year, data.month)
-
         mes_ano = f"{str(datetime.datetime.now().strftime('%B'))} - {data.year}"
 
         return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano) 
@@ -124,12 +123,28 @@ def evento(dia, mes, ano):
 # Rota para cadastrar novo evento.
 @app.route("/cadastrar_evento", methods = ["post"])
 def cadastrar_evento():
-    
+
+    print("=== Session ===")
+    print(session)
+    print(session["usuario_logado"])
+    print("=== Fim da Session ===")
+
+    lo_teste = str(session)
+    print(type(lo_teste))
+    lo_usuario = Usuario.query.filter_by(username = "david").first()
+    print("=== Objeto lo_usuario ===")
+    print(lo_usuario)
+
+    print("=== Fim do Objeto ===")
+
     # Criando variáveis locais
     lo_data = request.form["n_data"]
     lo_titulo = request.form["n_titulo"]
     lo_descricao = request.form["n_descricao"]
     lo_fk = 1 # Tem que passa o id_usuario para a chave estrangeira
+    print(f"Aqui somente a session. => {session}")
+    print(f"Aqui a session com chave valor. => {session['usuario_logado']}")
+    print(f"Tentando pegar id do usuario no banco de dados. => {evento}")
 
     lo_novo_evento = Evento(data_evento = lo_data, titulo = lo_titulo, descricao = lo_descricao, fk_usuario = lo_fk)
     db.session.add(lo_novo_evento)
