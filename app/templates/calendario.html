@@ -4,17 +4,22 @@
         <main class="container">
 
             <table class="table">
-                <p>mes {{ mes }}</p>
-                <p>ano {{ ano }}</p>
 
                 <thead>
+                    <tr>
+                      <th colspan="1"><</th>
+                      <th colspan="5">{{ mes_ano }}</th>
+                      <th colspan="1">></th>
+                    </tr>
+                  </thead>
+
+                <tbody>
                     <tr>
                         {% for dias_ext in dias_da_semana %}
                             <th scope="col">{{ dias_ext }}</th>
                         {% endfor %}                    
                     </tr>
-                </thead>
-                <tbody>
+
                     {% for semanas in calDays %}
                         <tr>
                         {% for dias in semanas %}

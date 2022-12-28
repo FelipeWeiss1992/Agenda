@@ -33,11 +33,11 @@ def login():
 @app.route("/autenticar", methods = ["post"])
 def autenticar():
 
-    lo_usuario = Usuario.query.filter_by(username = request.form["input_usuario"]).first()
+    lo_usuario = Usuario.query.filter_by(username = request.form["n_usuario"]).first()
 
     if lo_usuario:
         print(lo_usuario)
-        if request.form["input_senha"] == lo_usuario.senha:
+        if request.form["n_senha"] == lo_usuario.senha:
 
             session = lo_usuario.username
 
@@ -67,30 +67,34 @@ def registro():
 def cadastrar_usuario():
 
     # Criando variáveis locais.
-    lo_nome = request.form["nome"]
-    lo_nascimento = request.form["data_nascimento"]
-    lo_cpf = request.form["cpf"] # Aplicar filtro para retirar os "." e o "-", estouro de campo no banco de dados.
-    lo_nickname = request.form["username"]
-    lo_senha = request.form["senha"]
+    lo_nome = request.form["n_nome"]
+    lo_nascimento = request.form["n_data_nascimento"]
+    lo_cpf = request.form["n_cpf"] # Aplicar filtro para retirar os "." e o "-", estouro de campo no banco de dados.
+    lo_nickname = request.form["n_username"]
+    lo_senha = request.form["n_senha"]
 
     # Primeiro parametro vindo do Bando de Dados e segundo vindo do Formulário HTML.
     lo_usuario = Usuario.query.filter_by(nome = lo_nome).first()
+    print("Aqui lo_usuario")
+    print(lo_usuario)
 
     if lo_usuario:
+        print("Entrou no primeito IF.")
         # Usuário já cadastrado.
-        if request.form["nome"] == lo_usuario.nome:
-            print("Usuário já cadastrado.")
+        print("Usuário já cadastrado.")
 
-            return redirect(url_for("registro"))
-        else:
-            lo_novo_usuario = Usuario(nome = lo_nome, data_nascimento = lo_nascimento, cpf = lo_cpf, username = lo_nickname, senha = lo_senha)
-            db.session.add(lo_novo_usuario)
-            db.session.commit()
-            print("Usuário cadastrado com sucesso.")
+        return redirect(url_for("registro"))
+    else:
+        lo_novo_usuario = Usuario(nome = lo_nome, data_nascimento = lo_nascimento, cpf = lo_cpf, username = lo_nickname, senha = lo_senha)
+        db.session.add(lo_novo_usuario)
+        db.session.commit()
+        print("Usuário cadastrado com sucesso.")
 
-            return redirect(url_for("login"))
-       
+        return redirect(url_for("login"))
+
+    print("Ocorreu um erro.")
     return redirect(url_for("registro"))
+
 
 
 # Renderização da página calendario.html
@@ -104,20 +108,32 @@ def calendario():
 
     calDays = cal.monthdayscalendar(data.year, data.month)
 
-    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month)
+    mes_ano = f"{str(datetime.datetime.now().strftime('%B'))} - {data.year}"
+
+    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano) 
 
 
 # Renderização da página evento.html
 @app.route("/evento/<string:dia>/<string:mes>/<string:ano>")
 def evento(dia, mes, ano):
 
-    completo = f"{ano}-{mes}-{dia}"
+    d_completo = f"{ano}-{mes}-{dia}"
 
-    return render_template("evento.html", titulo = "Cadastro de eventos", completo = completo)
+    return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = d_completo)
 
 
 # Rota para cadastrar novo evento.
-@app.route("/cadastrar_evento/<dia>")
-def cadastrar_evento(dia):
-    print(dia)
-    pass
+@app.route("/cadastrar_evento", methods = ["post"])
+def cadastrar_evento():
+    
+    # Criando variáveis locais
+    lo_data = request.form["n_data"]
+    lo_titulo = request.form["n_titulo"]
+    lo_descricao = request.form["n_descricao"]
+
+    lo_novo_evento = Evento(data_evento = lo_data, titulo = lo_titulo, descricao = lo_descricao)
+    db.session.add(lo_novo_evento)
+    db.session.commit()
+    # Fazer uma mensagem de Evento cadastrado com sucessso.
+
+    return redirect(url_for("calendario"))
