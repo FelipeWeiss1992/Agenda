@@ -55,7 +55,7 @@ def logout():
 
     session["usuario_logado"] = None
 
-    return
+    return redirect(url_for("index"))
 
 
 # Renderização da página registro.html
@@ -95,16 +95,21 @@ def cadastrar_usuario():
 @app.route("/calendario")
 def calendario():
 
-    data = datetime.datetime.now()
-    cal = calendar.Calendar(firstweekday=6)
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-    dias_da_semana = ("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado")
+        return redirect(url_for("login", proximo = url_for("calendario")))
+    else:
+        
+        data = datetime.datetime.now()
+        cal = calendar.Calendar(firstweekday=6)
 
-    calDays = cal.monthdayscalendar(data.year, data.month)
+        dias_da_semana = ("Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb")
 
-    mes_ano = f"{str(datetime.datetime.now().strftime('%B'))} - {data.year}"
+        calDays = cal.monthdayscalendar(data.year, data.month)
 
-    return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano) 
+        mes_ano = f"{str(datetime.datetime.now().strftime('%B'))} - {data.year}"
+
+        return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano) 
 
 
 # Renderização da página evento.html
