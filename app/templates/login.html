@@ -15,7 +15,7 @@
         <form action="{{ url_for('autenticar') }}" method="post">
 
             <!-- Ver o funcionamento deste linha -->
-            <input type="hidden" name="proximo" value="{{ proximo or url_for('index') }}">
+            <input type="hidden" name="proximo" value="{{ proximo or url_for('calendario') }}">
 
             <div class="col-md-2 mb-3">
                 <label for="i_usuario">Username</label>

@@ -24,9 +24,9 @@ def sobre():
 @app.route("/login")
 def login():
 
-    proximo = request.args.get("proximo")
+    lo_proximo = request.args.get("proximo")
 
-    return render_template("login.html", titulo = "Login", proximo = proximo)
+    return render_template("login.html", titulo = "Login", proximo = lo_proximo)
 
 
 # Rota para autenticar usuários.
@@ -36,14 +36,14 @@ def autenticar():
     lo_usuario = Usuario.query.filter_by(username = request.form["n_usuario"]).first()
 
     if lo_usuario:
-        print(lo_usuario)
+
         if request.form["n_senha"] == lo_usuario.senha:
 
-            session = lo_usuario.username
+            session["usuario_logado"] = lo_usuario.username
 
-            proxima_pagina = request.form["proximo"]
+            lo_proxima_pagina = request.form["proximo"]
 
-            return redirect(proxima_pagina)
+            return redirect(lo_proxima_pagina)
     else:
 
         return redirect(url_for("login"))
@@ -52,7 +52,10 @@ def autenticar():
 # Rota para logoout.
 @app.route("/logout")
 def logout():
-    pass
+
+    session["usuario_logado"] = None
+
+    return
 
 
 # Renderização da página registro.html
@@ -75,20 +78,15 @@ def cadastrar_usuario():
 
     # Primeiro parametro vindo do Bando de Dados e segundo vindo do Formulário HTML.
     lo_usuario = Usuario.query.filter_by(nome = lo_nome).first()
-    print("Aqui lo_usuario")
-    print(lo_usuario)
 
     if lo_usuario:
-        print("Entrou no primeito IF.")
         # Usuário já cadastrado.
-        print("Usuário já cadastrado.")
 
         return redirect(url_for("registro"))
     else:
         lo_novo_usuario = Usuario(nome = lo_nome, data_nascimento = lo_nascimento, cpf = lo_cpf, username = lo_nickname, senha = lo_senha)
         db.session.add(lo_novo_usuario)
         db.session.commit()
-        print("Usuário cadastrado com sucesso.")
 
         return redirect(url_for("login"))
 
@@ -113,9 +111,9 @@ def calendario():
 @app.route("/evento/<string:dia>/<string:mes>/<string:ano>")
 def evento(dia, mes, ano):
 
-    d_completo = f"{ano}-{mes}-{dia}"
+    lo_completo = f"{ano}-{mes}-{dia}"
 
-    return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = d_completo)
+    return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo)
 
 
 # Rota para cadastrar novo evento.
