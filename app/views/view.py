@@ -92,10 +92,6 @@ def cadastrar_usuario():
 
         return redirect(url_for("login"))
 
-    print("Ocorreu um erro.")
-    return redirect(url_for("registro"))
-
-
 
 # Renderização da página calendario.html
 @app.route("/calendario")
@@ -130,8 +126,9 @@ def cadastrar_evento():
     lo_data = request.form["n_data"]
     lo_titulo = request.form["n_titulo"]
     lo_descricao = request.form["n_descricao"]
+    lo_fk = 1 # Tem que passa o id_usuario para a chave estrangeira
 
-    lo_novo_evento = Evento(data_evento = lo_data, titulo = lo_titulo, descricao = lo_descricao)
+    lo_novo_evento = Evento(data_evento = lo_data, titulo = lo_titulo, descricao = lo_descricao, fk_usuario = lo_fk)
     db.session.add(lo_novo_evento)
     db.session.commit()
     # Fazer uma mensagem de Evento cadastrado com sucessso.
