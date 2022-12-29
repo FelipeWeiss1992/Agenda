@@ -138,3 +138,43 @@ def cadastrar_evento():
     # Fazer uma mensagem de Evento cadastrado com sucessso.
 
     return redirect(url_for("calendario"))
+
+
+# Renderização da página listar_eventos.html
+@app.route("/listar_eventos")
+def listar_eventos():
+
+    lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
+    print("select")
+    print(lo_usuario.id_usuario)
+    lo_fk = lo_usuario.id_usuario
+    
+    lo_eventos = Evento.query.order_by(Evento.fk_usuario)
+    
+
+    return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos)
+
+
+@app.route("/editar")
+def editar():
+
+    print("Entrou no Editar.")
+    pass
+
+
+@app.route("/deletar")
+def deletar():
+
+    print("Entrou no Deletar. ")
+    pass
+
+"""@app.route("/editar_eventos/<int:id>")
+def editar_eventos(id):
+
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+    
+        return redirect(url_for("login", proximo = url_for("editar_eventos")))
+    else:
+        lo_eventos = Evento.query.filter_by(id = id).first()
+
+    return render_template("editar.html", titulo = "Editar Pessoa", pessoas = pessoa)"""
