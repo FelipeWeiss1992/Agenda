@@ -115,9 +115,14 @@ def calendario():
 @app.route("/evento/<string:dia>/<string:mes>/<string:ano>")
 def evento(dia, mes, ano):
 
-    lo_completo = f"{ano}-{mes}-{dia}"
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-    return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo)
+        return redirect(url_for("login", proximo = url_for("calendario")))
+    else:
+
+        lo_completo = f"{ano}-{mes}-{dia}"
+
+        return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo)
 
 
 # Rota para cadastrar novo evento.
@@ -144,15 +149,18 @@ def cadastrar_evento():
 @app.route("/listar_eventos")
 def listar_eventos():
 
-    lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
-    print("select")
-    print(lo_usuario.id_usuario)
-    lo_fk = lo_usuario.id_usuario
-    
-    lo_eventos = Evento.query.order_by(Evento.fk_usuario)
-    
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-    return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos)
+        return redirect(url_for("login", proximo = url_for("calendario")))
+    else:
+        lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
+        print("Resultado do SELECT. <=>")
+        lo_fk = lo_usuario.id_usuario
+        print(lo_usuario.id_usuario)
+
+        lo_eventos = Evento.query.filter_by(fk_usuario = lo_fk).order_by(Evento.data_evento)
+        
+        return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos)
 
 
 @app.route("/editar")
