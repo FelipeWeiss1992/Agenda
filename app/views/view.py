@@ -124,27 +124,13 @@ def evento(dia, mes, ano):
 @app.route("/cadastrar_evento", methods = ["post"])
 def cadastrar_evento():
 
-    print("=== Session ===")
-    print(session)
-    print(session["usuario_logado"])
-    print("=== Fim da Session ===")
-
-    lo_teste = str(session)
-    print(type(lo_teste))
-    lo_usuario = Usuario.query.filter_by(username = "david").first()
-    print("=== Objeto lo_usuario ===")
-    print(lo_usuario)
-
-    print("=== Fim do Objeto ===")
+    lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
 
     # Criando variáveis locais
     lo_data = request.form["n_data"]
     lo_titulo = request.form["n_titulo"]
     lo_descricao = request.form["n_descricao"]
-    lo_fk = 1 # Tem que passa o id_usuario para a chave estrangeira
-    print(f"Aqui somente a session. => {session}")
-    print(f"Aqui a session com chave valor. => {session['usuario_logado']}")
-    print(f"Tentando pegar id do usuario no banco de dados. => {evento}")
+    lo_fk = lo_usuario.id_usuario
 
     lo_novo_evento = Evento(data_evento = lo_data, titulo = lo_titulo, descricao = lo_descricao, fk_usuario = lo_fk)
     db.session.add(lo_novo_evento)
