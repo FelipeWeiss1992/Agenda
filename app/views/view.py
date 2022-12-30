@@ -170,8 +170,6 @@ def editar_evento(id):
 
         return redirect(url_for("login", proximo = url_for("calendario")))
     else:
-        print("Entrou no Editar")
-
         lo_eventos = Evento.query.filter_by(id_evento = id).first()
 
         return render_template("editar_evento.html", titulo = "Editar Evento", evento = lo_eventos)
@@ -185,7 +183,7 @@ def atualizar_evento():
         return redirect(url_for("login", proximo = url_for("calendario")))
     else:
         #lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
-        lo_eventos = Evento.query.filter_by(id_evento = request.form["n_teste"]).first()
+        lo_eventos = Evento.query.filter_by(id_evento = request.form["n_id"]).first()
         lo_eventos.data_evento = request.form["n_data"]
         lo_eventos.titulo = request.form["n_titulo"]
         lo_eventos.descricao = request.form["n_descricao"]
@@ -197,8 +195,14 @@ def atualizar_evento():
         return redirect(url_for("listar_eventos"))
 
 
-@app.route("/deletar")
-def deletar():
+@app.route("/deletar_evento/<int:id>")
+def deletar_evento(id):
+    
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-    print("Entrou no Deletar. ")
-    pass
+        return redirect(url_for("login", proximo = url_for("calendario")))
+    else:
+        lo_eventos = Evento.query.filter_by(id_evento = id).delete()
+        db.session.commit()
+
+        return redirect(url_for("listar_eventos"))
