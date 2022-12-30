@@ -163,11 +163,38 @@ def listar_eventos():
         return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos)
 
 
-@app.route("/editar")
-def editar():
+@app.route("/editar_evento/<int:id>")
+def editar_evento(id):
 
-    print("Entrou no Editar.")
-    pass
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("calendario")))
+    else:
+        print("Entrou no Editar")
+
+        lo_eventos = Evento.query.filter_by(id_evento = id).first()
+
+        return render_template("editar_evento.html", titulo = "Editar Evento", evento = lo_eventos)
+
+
+@app.route("/atualizar_evento", methods = ["POST"])
+def atualizar_evento():
+
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("calendario")))
+    else:
+        #lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
+        lo_eventos = Evento.query.filter_by(id_evento = request.form["n_teste"]).first()
+        lo_eventos.data_evento = request.form["n_data"]
+        lo_eventos.titulo = request.form["n_titulo"]
+        lo_eventos.descricao = request.form["n_descricao"]
+        #lo_eventos.fk_usuario = lo_usuario.id_usuario
+
+        db.session.add(lo_eventos)
+        db.session.commit()
+
+        return redirect(url_for("listar_eventos"))
 
 
 @app.route("/deletar")
@@ -175,14 +202,3 @@ def deletar():
 
     print("Entrou no Deletar. ")
     pass
-
-"""@app.route("/editar_eventos/<int:id>")
-def editar_eventos(id):
-
-    if "usuario_logado" not in session or session["usuario_logado"] is None:
-    
-        return redirect(url_for("login", proximo = url_for("editar_eventos")))
-    else:
-        lo_eventos = Evento.query.filter_by(id = id).first()
-
-    return render_template("editar.html", titulo = "Editar Pessoa", pessoas = pessoa)"""
