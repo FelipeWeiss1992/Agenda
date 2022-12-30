@@ -61,6 +61,7 @@ app
 |   └── style.css
 ├── templates
 |   ├── calendario.html
+|   ├── editar_evento.html
 |   ├── evento.html
 |   ├── home.html
 |   ├── index.html
@@ -75,3 +76,43 @@ app
 ├── banco.py
 ├── config.py
 └── main.py
+
+
+        * -------------------------------------- *
+        * Definir padrões da variáveis           *
+        * -------------------------------------- *
+
+Definir nomenclatura das variáveis
+
+    * HTML
+    * PostgreSQL
+    * Python
+
+
+        * -------------------------------------- *
+        * O que falta fazer                      *
+        * -------------------------------------- *
+
+ => Criar a link Usuário na nagegação
+
+ => Editar usuários.
+
+ => Deletar usuários.
+
+ => Ver a possibilidade de trocar Login para Logout quando o usuário
+    estiver logado.
+
+ => Fazer o layout das páginas HTML.
+
+
+        * -------------------------------------- *
+        * Problemas a ser corrigido              *
+        * -------------------------------------- *
+
+ => A função (autenticar) não está funcionando quando a senha do usuário
+    for digitada errada.
+
+ => A função (evento) não está passando corretamento o valor nos dias
+    com uma casa decimal, (1, 2, 3, 4, 5, 6, 7, 8, 9).
+
+ => Colocar required nos input HTML.
