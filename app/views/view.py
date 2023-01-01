@@ -121,6 +121,9 @@ def evento(dia, mes, ano):
     else:
 
         lo_completo = f"{ano}-{mes}-{dia}"
+        print("Aqui a data completa. =>")
+        print(lo_completo)
+        print("========================")
 
         return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo)
 
