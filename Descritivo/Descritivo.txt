@@ -59,7 +59,9 @@ app
 |   ├── evento.py
 |   └── usuario.py
 ├── static
-|   └── style.css
+|   ├── css
+|   |   └── style.css
+|   └── imagens
 ├── templates
 |   ├── calendario.html
 |   ├── editar_evento.html
