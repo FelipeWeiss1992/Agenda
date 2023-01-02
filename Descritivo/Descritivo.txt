@@ -53,6 +53,7 @@ FOREIGN KEY (id_usuario)
         * Estrutura de arquivos e pastas         *
         * -------------------------------------- *
 
+
 app
 ├── models 
 |   ├── evento.py
@@ -82,6 +83,7 @@ app
         * Definir padrões da variáveis           *
         * -------------------------------------- *
 
+
 Definir nomenclatura das variáveis
 
     * HTML
@@ -92,6 +94,9 @@ Definir nomenclatura das variáveis
         * -------------------------------------- *
         * O que falta fazer                      *
         * -------------------------------------- *
+
+
+ => Mês anterio e Mês Posterior na aba calendário
 
  => Criar a link Usuário na nagegação
 
@@ -109,10 +114,11 @@ Definir nomenclatura das variáveis
         * Problemas a ser corrigido              *
         * -------------------------------------- *
 
+
  => A função (autenticar) não está funcionando quando a senha do usuário
     for digitada errada.
 
- => A função (evento) não está passando corretamento o valor nos dias
-    com uma casa decimal, (1, 2, 3, 4, 5, 6, 7, 8, 9).
+ x > A função (evento) não está passando corretamento o valor nos dias e mêses
+    com uma casa decimal, (1, 2, 3, 4, 5, 6, 7, 8, 9). "Feito"
 
  => Colocar required nos input HTML.
