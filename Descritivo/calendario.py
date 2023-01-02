@@ -26,13 +26,15 @@ print(tc.formatmonth(data.year, data.month))
 
 
 # Exemplo 4: 
+
+'''
 cal = calendar.Calendar(firstweekday=6)
 print(f"Aqui a variavel cal {cal}")
 dias_da_semana = ("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado")
 print(f"Aqui dias da semana {dias_da_semana}")
 calDays = cal.monthdayscalendar(data.year, data.month)
 print(f"Aqui a variavel calDays {calDays}")
-
+'''
 
 """
 class calendar.Calendar:

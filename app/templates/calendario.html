@@ -3,27 +3,31 @@
 
         <main class="container">
 
-            <table class="table">
+            <table class="table mt-5">
 
                 <thead>
                     <tr>
-                      <th colspan="1"><</th>
-                      <th colspan="5">{{ mes_ano }}</th>
-                      <th colspan="1">></th>
+                      <th colspan="1" class="text-center"><a href="#"> < </a></th>
+                      <th colspan="5" class="text-center">{{ mes_ano }}</th>
+                      <th colspan="1" class="text-center"><a href="#"> > </a></th>
                     </tr>
                   </thead>
 
                 <tbody>
                     <tr>
                         {% for dias_ext in dias_da_semana %}
-                            <th scope="col">{{ dias_ext }}</th>
+                            <th scope="col" class="text-center">{{ dias_ext }}</th>
                         {% endfor %}                    
                     </tr>
 
                     {% for semanas in calDays %}
                         <tr>
                         {% for dias in semanas %}
-                            <td id="i_dia{{ dias }}" name="c_dia{{ dias }}"><a href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>                                
+                            {% if dias != 0 %}
+                                <td class="text-center" id="i_dia{{ dias }}" name="c_dia{{ dias }}"><a href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>
+                            {% else %}
+                                <td class="text-center" id="i_dia" name="c_dia"><a href="#">&nbsp;</a></td>
+                            {% endif %}
                         {% endfor %}
                         </tr>
                     {% endfor %}            

@@ -112,7 +112,7 @@ def calendario():
 
 
 # Renderização da página evento.html
-@app.route("/evento/<string:dia>/<string:mes>/<string:ano>")
+@app.route("/evento/<int:dia>/<int:mes>/<int:ano>")
 def evento(dia, mes, ano):
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
@@ -120,10 +120,17 @@ def evento(dia, mes, ano):
         return redirect(url_for("login", proximo = url_for("calendario")))
     else:
 
-        lo_completo = f"{ano}-{mes}-{dia}"
-        print("Aqui a data completa. =>")
-        print(lo_completo)
-        print("========================")
+        if dia < 10:
+            lo_dia = ("0" + str(dia))
+        else:
+            lo_dia = str(dia)
+        
+        if mes < 10:
+            lo_mes = ("0" + str(mes))
+        else:
+            lo_mes = str(mes)
+
+        lo_completo = f"{ano}-{lo_mes}-{lo_dia}"
 
         return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo)
 
