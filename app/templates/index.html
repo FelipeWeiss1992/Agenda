@@ -24,13 +24,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/sobre">Sobre</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a> <!-- Tentat mudar de login para logoout depois que o usuário se logar. -->
+                <!--<li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout</a> <!-- Tentat mudar de login para logoout depois que o usuário se logar. -->
-                </li>
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li> -->
                 <!-- Adicionar um campo que apareça o usuário logado. -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{ login_out }}">{{ login_out }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{ usuario }}</a>
+                </li>
             </ul>
 
         </header>
