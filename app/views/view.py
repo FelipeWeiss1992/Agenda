@@ -6,6 +6,11 @@ import calendar
 import datetime
 
 
+                # -------------------------------------- #
+                # Home                                   #
+                # -------------------------------------- #
+
+
 # Renderização da página home.html
 @app.route("/")
 def index():
@@ -66,6 +71,11 @@ def logout():
     return redirect(url_for("index"))
 
 
+                # -------------------------------------- #
+                # Usuário                                #
+                # -------------------------------------- #
+
+
 # Renderização da página registro.html
 @app.route("/registro")
 def registro():
@@ -88,7 +98,6 @@ def cadastrar_usuario():
     lo_usuario = Usuario.query.filter_by(nome = lo_nome).first()
 
     if lo_usuario:
-        # Usuário já cadastrado.
 
         return redirect(url_for("registro"))
     else:
@@ -97,6 +106,61 @@ def cadastrar_usuario():
         db.session.commit()
 
         return redirect(url_for("login"))
+
+
+# Renderização da página perfil.html
+@app.route("/perfil")
+def perfil():
+
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("index")))
+    else:
+        lo_perfil = Usuario.query.filter_by(username = session["usuario_logado"]).first()
+
+        return render_template("perfil.html", titulo = "Editar Perfil", perfil = lo_perfil, login_out = "logout", usuario = session["usuario_logado"])
+
+
+# Rota para Atualizar perfil do Usuário.
+@app.route("/atualizar_perfil", methods = ["POST"])
+def atualizar_perfil():
+
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("index")))
+    else:
+        lo_perfil = Usuario.query.filter_by(id_usuario = request.form["n_id"]).first()
+        lo_perfil.nome = request.form["n_nome"]
+        lo_perfil.data_nascimento = request.form["n_data_nascimento"]
+        lo_perfil.cpf = request.form["n_cpf"]
+        lo_perfil.username = request.form["n_username"]
+        lo_perfil.senha = request.form["n_senha"]
+
+        db.session.add(lo_perfil)
+        db.session.commit()
+
+        return redirect(url_for("perfil"))
+
+
+# Rota para Deletar perfil do Usuário.
+@app.route("/deletar_perfil/<int:id>")
+def deletar_perfil(id):
+    
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("index")))
+    else:
+        lo_perfil = Usuario.query.filter_by(id_usuario = id).delete()
+        db.session.commit()
+
+        session["usuario_logado"] = None
+
+        return redirect(url_for("index"))
+
+
+                # -------------------------------------- #
+                # Eventos                                #
+                # -------------------------------------- #
 
 
 # Renderização da página calendario.html
@@ -180,6 +244,7 @@ def listar_eventos():
         return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos, login_out = "logout", usuario = session["usuario_logado"])
 
 
+# Renderização da página editar_evento.html
 @app.route("/editar_evento/<int:id>")
 def editar_evento(id):
 
@@ -192,6 +257,7 @@ def editar_evento(id):
         return render_template("editar_evento.html", titulo = "Editar Evento", evento = lo_eventos, login_out = "logout", usuario = session["usuario_logado"])
 
 
+# Rota para Atualizar Eventos.
 @app.route("/atualizar_evento", methods = ["POST"])
 def atualizar_evento():
 
@@ -199,12 +265,10 @@ def atualizar_evento():
 
         return redirect(url_for("login", proximo = url_for("index")))
     else:
-        #lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
         lo_eventos = Evento.query.filter_by(id_evento = request.form["n_id"]).first()
         lo_eventos.data_evento = request.form["n_data"]
         lo_eventos.titulo = request.form["n_titulo"]
         lo_eventos.descricao = request.form["n_descricao"]
-        #lo_eventos.fk_usuario = lo_usuario.id_usuario
 
         db.session.add(lo_eventos)
         db.session.commit()
@@ -212,6 +276,7 @@ def atualizar_evento():
         return redirect(url_for("listar_eventos"))
 
 
+# Rota para Deletar Eventos.
 @app.route("/deletar_evento/<int:id>")
 def deletar_evento(id):
     
@@ -223,51 +288,3 @@ def deletar_evento(id):
         db.session.commit()
 
         return redirect(url_for("listar_eventos"))
-
-
-# Rota para mostrar o perfil do usuário
-@app.route("/perfil")
-def perfil():
-
-    if "usuario_logado" not in session or session["usuario_logado"] is None:
-
-        return redirect(url_for("login", proximo = url_for("index")))
-    else:
-        lo_perfil = Usuario.query.filter_by(username = session["usuario_logado"]).first()
-
-        return render_template("perfil.html", titulo = "Editar Perfil", perfil = lo_perfil, login_out = "logout", usuario = session["usuario_logado"])
-
-
-@app.route("/atualizar_perfil", methods = ["POST"])
-def atualizar_perfil():
-
-    if "usuario_logado" not in session or session["usuario_logado"] is None:
-
-        return redirect(url_for("login", proximo = url_for("index")))
-    else:
-        lo_perfil = Usuario.query.filter_by(id_usuario = request.form["n_id"]).first()
-        lo_perfil.nome = request.form["n_nome"]
-        lo_perfil.data_nascimento = request.form["n_data_nascimento"]
-        lo_perfil.cpf = request.form["n_cpf"]
-        lo_perfil.username = request.form["n_username"]
-        lo_perfil.senha = request.form["n_senha"]
-
-        db.session.add(lo_perfil)
-        db.session.commit()
-
-        return redirect(url_for("perfil"))
-
-# tem que fazer um logout antes de deletar um usuário
-@app.route("/deletar_perfil/<int:id>")
-def deletar_perfil(id):
-    
-    if "usuario_logado" not in session or session["usuario_logado"] is None:
-
-        return redirect(url_for("login", proximo = url_for("index")))
-    else:
-        lo_perfil = Usuario.query.filter_by(id_usuario = id).delete()
-        db.session.commit()
-
-        session["usuario_logado"] = None
-
-        return redirect(url_for("index"))
