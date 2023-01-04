@@ -62,7 +62,6 @@ def autenticar():
 def logout():
 
     session["usuario_logado"] = None
-    print(session)
 
     return redirect(url_for("index"))
 
@@ -125,7 +124,7 @@ def evento(dia, mes, ano):
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
 
         if dia < 10:
@@ -169,7 +168,7 @@ def listar_eventos():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
         lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
         print("Resultado do SELECT. <=>")
@@ -186,7 +185,7 @@ def editar_evento(id):
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
         lo_eventos = Evento.query.filter_by(id_evento = id).first()
 
@@ -198,7 +197,7 @@ def atualizar_evento():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
         #lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
         lo_eventos = Evento.query.filter_by(id_evento = request.form["n_id"]).first()
@@ -218,7 +217,7 @@ def deletar_evento(id):
     
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
         lo_eventos = Evento.query.filter_by(id_evento = id).delete()
         db.session.commit()
@@ -232,7 +231,7 @@ def perfil():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
         lo_perfil = Usuario.query.filter_by(username = session["usuario_logado"]).first()
 
@@ -244,7 +243,7 @@ def atualizar_perfil():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
         lo_perfil = Usuario.query.filter_by(id_usuario = request.form["n_id"]).first()
         lo_perfil.nome = request.form["n_nome"]
@@ -258,15 +257,17 @@ def atualizar_perfil():
 
         return redirect(url_for("perfil"))
 
-
+# tem que fazer um logout antes de deletar um usuário
 @app.route("/deletar_perfil/<int:id>")
 def deletar_perfil(id):
     
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("home")))
+        return redirect(url_for("login", proximo = url_for("index")))
     else:
         lo_perfil = Usuario.query.filter_by(id_usuario = id).delete()
         db.session.commit()
 
-        return redirect(url_for("home"))
+        session["usuario_logado"] = None
+
+        return redirect(url_for("index"))

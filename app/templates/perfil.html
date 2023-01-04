@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-<form action="" method="post">
+<form action="{{ url_for('atualizar_perfil') }}" method="post">
 
     <input type="hidden" name="n_id" value="{{ perfil.id_usuario }}">
 
@@ -26,9 +26,9 @@
         <input type="password" class="form-control" id="i_senha" name="n_senha" value="{{ perfil.senha }}">
     </div>
 
-    <a href="{{ url_for('atualizar_perfil') }}">Salvar</a>
+    <button type="submit" class="btn btn-primary">Salvar</button>
     <a href="{{ url_for('deletar_perfil', id=perfil.id_usuario ) }}">Deletar</a>
-
+    
 </form>
 
 {% endblock %}
