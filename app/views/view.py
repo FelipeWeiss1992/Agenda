@@ -125,7 +125,7 @@ def evento(dia, mes, ano):
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("calendario")))
+        return redirect(url_for("login", proximo = url_for("home")))
     else:
 
         if dia < 10:
@@ -169,7 +169,7 @@ def listar_eventos():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("calendario")))
+        return redirect(url_for("login", proximo = url_for("home")))
     else:
         lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
         print("Resultado do SELECT. <=>")
@@ -186,7 +186,7 @@ def editar_evento(id):
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("calendario")))
+        return redirect(url_for("login", proximo = url_for("home")))
     else:
         lo_eventos = Evento.query.filter_by(id_evento = id).first()
 
@@ -198,7 +198,7 @@ def atualizar_evento():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("calendario")))
+        return redirect(url_for("login", proximo = url_for("home")))
     else:
         #lo_usuario = Usuario.query.filter_by(username = session["usuario_logado"]).first()
         lo_eventos = Evento.query.filter_by(id_evento = request.form["n_id"]).first()
@@ -218,9 +218,55 @@ def deletar_evento(id):
     
     if "usuario_logado" not in session or session["usuario_logado"] is None:
 
-        return redirect(url_for("login", proximo = url_for("calendario")))
+        return redirect(url_for("login", proximo = url_for("home")))
     else:
         lo_eventos = Evento.query.filter_by(id_evento = id).delete()
         db.session.commit()
 
         return redirect(url_for("listar_eventos"))
+
+
+# Rota para mostrar o perfil do usuário
+@app.route("/perfil")
+def perfil():
+
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("home")))
+    else:
+        lo_perfil = Usuario.query.filter_by(username = session["usuario_logado"]).first()
+
+        return render_template("perfil.html", titulo = "Editar Perfil", perfil = lo_perfil, login_out = "logout", usuario = session["usuario_logado"])
+
+
+@app.route("/atualizar_perfil", methods = ["POST"])
+def atualizar_perfil():
+
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("home")))
+    else:
+        lo_perfil = Usuario.query.filter_by(id_usuario = request.form["n_id"]).first()
+        lo_perfil.nome = request.form["n_nome"]
+        lo_perfil.data_nascimento = request.form["n_data_nascimento"]
+        lo_perfil.cpf = request.form["n_cpf"]
+        lo_perfil.username = request.form["n_username"]
+        lo_perfil.senha = request.form["n_senha"]
+
+        db.session.add(lo_perfil)
+        db.session.commit()
+
+        return redirect(url_for("perfil"))
+
+
+@app.route("/deletar_perfil/<int:id>")
+def deletar_perfil(id):
+    
+    if "usuario_logado" not in session or session["usuario_logado"] is None:
+
+        return redirect(url_for("login", proximo = url_for("home")))
+    else:
+        lo_perfil = Usuario.query.filter_by(id_usuario = id).delete()
+        db.session.commit()
+
+        return redirect(url_for("home"))
