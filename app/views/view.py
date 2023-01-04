@@ -116,7 +116,7 @@ def calendario():
         calDays = cal.monthdayscalendar(data.year, data.month)
         mes_ano = f"{str(datetime.datetime.now().strftime('%B'))} - {data.year}"
 
-        return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano) 
+        return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano, login_out = "logout", usuario = session["usuario_logado"]) 
 
 
 # Renderização da página evento.html
@@ -178,7 +178,7 @@ def listar_eventos():
 
         lo_eventos = Evento.query.filter_by(fk_usuario = lo_fk).order_by(Evento.data_evento)
         
-        return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos)
+        return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos, login_out = "logout", usuario = session["usuario_logado"])
 
 
 @app.route("/editar_evento/<int:id>")
@@ -190,7 +190,7 @@ def editar_evento(id):
     else:
         lo_eventos = Evento.query.filter_by(id_evento = id).first()
 
-        return render_template("editar_evento.html", titulo = "Editar Evento", evento = lo_eventos)
+        return render_template("editar_evento.html", titulo = "Editar Evento", evento = lo_eventos, login_out = "logout", usuario = session["usuario_logado"])
 
 
 @app.route("/atualizar_evento", methods = ["POST"])
