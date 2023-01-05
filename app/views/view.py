@@ -203,7 +203,7 @@ def evento(dia, mes, ano):
 
         lo_completo = f"{ano}-{lo_mes}-{lo_dia}"
 
-        return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo)
+        return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo, login_out = "logout", usuario = session["usuario_logado"])
 
 
 # Rota para cadastrar novo evento.
