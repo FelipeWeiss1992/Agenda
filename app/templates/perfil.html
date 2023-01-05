@@ -1,34 +1,40 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-<form action="{{ url_for('atualizar_perfil') }}" method="post">
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded bg-light" action="{{ url_for('atualizar_perfil') }}" method="post">
 
-    <input type="hidden" name="n_id" value="{{ perfil.id_usuario }}">
+                    <input type="hidden" name="n_id" value="{{ perfil.id_usuario }}">
 
-    <div class="form-group col-md-3">
-        <label for="i_nome">Nome Completo</label>
-        <input type="text" class="form-control" id="i_nome" name="n_nome" value="{{ perfil.nome }}">
-    </div>
-    <div class="form-group col-md-2">
-        <label for="i_data_nascimento">Data de Nascimento</label>
-        <input type="date" class="form-control" id="i_data_nascimento" name="n_data_nascimento" value="{{ perfil.data_nascimento }}">
-    </div>
-    <div class="form-group col-md-2">
-        <label for="i_cpf">C.P.F.</label>
-        <input type="text" class="form-control" id="i_cpf" name="n_cpf" value="{{ perfil.cpf }}">
-    </div>
-    <div class="form-group col-md-2">
-        <label for="i_username">Nickname</label>
-        <input type="text" class="form-control" id="i_username" name="n_username" value="{{ perfil.username }}">
-    </div>
-    <div class="form-group col-md-2">
-        <label for="i_senha">Senha</label>
-        <input type="password" class="form-control" id="i_senha" name="n_senha" value="{{ perfil.senha }}">
-    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_nome" name="n_nome" value="{{ perfil.nome }}">
+                        <label for="i_nome">Nome Completo</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="i_data_nascimento" name="n_data_nascimento" value="{{ perfil.data_nascimento }}">
+                        <label for="i_data_nascimento">Data de Nascimento</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_cpf" name="n_cpf" value="{{ perfil.cpf }}">
+                        <label for="i_cpf">C.P.F.</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="i_username" name="n_username" value="{{ perfil.username }}">
+                        <label for="i_username">Nickname</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="i_senha" name="n_senha" value="{{ perfil.senha }}">
+                        <label for="i_senha">Senha</label>
+                    </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
-    <a href="{{ url_for('deletar_perfil', id=perfil.id_usuario ) }}">Deletar</a>
-    
-</form>
+                    <button type="submit" class="btn btn-md btn-success">Salvar</button>
+                    <a href="{{ url_for('deletar_perfil', id=perfil.id_usuario ) }}">Deletar</a>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
