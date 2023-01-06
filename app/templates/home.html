@@ -1,39 +1,37 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-        <main class="container border">
-
-            <div class="d-flex justify-content-between">
-
-                <div class="card border-primary px-3" style="max-width: 18rem;">
-                    <div class="card-header">Grátis</div>
-                    <div class="card-body text-primary">
-                        <h5 class="card-title">R$ 0,00 por mês</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-                    </div>
-                    <p class="btn btn-primary"><a href="/registro">Registre-se</a></p>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="card border-primary col-3">
+                <div class="card-header">Grátis</div>
+                <div class="card-body text-primary">
+                    <h5 class="card-title">R$ 0,00 por mês</h5>
+                    <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
                 </div>
-
-                <div class="card border-success px-3" style="max-width: 18rem;">
-                    <div class="card-header">Básico</div>
-                    <div class="card-body text-success">
-                        <h5 class="card-title">R$ 9,90 por mês</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-                    </div>
-                    <p class="btn btn-success"><a href="/registro">Registre-se</a></p>
-                </div>
-
-                <div class="card border-warning px-3" style="max-width: 18rem;">
-                    <div class="card-header">Premiun</div>
-                    <div class="card-body text-warning">
-                        <h5 class="card-title">R$ 29,90 por mês</h5>
-                        <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
-                    </div>
-                    <p class="btn btn-warning"><a href="/registro">Registre-se</a></p>
-                </div>
-            
+                <p class="btn btn-primary"><a href="/registro">Registre-se</a></p>
             </div>
 
-        </main>
+            <div class="card border-success">
+                <div class="card-header">Básico</div>
+                <div class="card-body text-success">
+                    <h5 class="card-title">R$ 9,90 por mês</h5>
+                    <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+                </div>
+                <p class="btn btn-md btn-success"><a href="/registro">Registre-se</a></p>
+            </div>
+
+            <div class="card border-warning">
+                <div class="card-header">Premiun</div>
+                <div class="card-body text-warning">
+                    <h5 class="card-title">R$ 29,90 por mês</h5>
+                    <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+                </div>
+                <p class="btn btn-warning"><a href="/registro">Registre-se</a></p>
+            </div>
+            
+        </div>
+
+    </div>
         
 {% endblock %}
