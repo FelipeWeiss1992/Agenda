@@ -5,6 +5,9 @@
         <div class="row align-items-center">
             <div class="col-md-10 mx-auto col-lg-5">
                 <form class="p-4 p-md-5 border rounded bg-light" action="{{ url_for('atualizar_evento') }}" method="post">
+
+                    <input type="hidden" name="n_id" value="{{ evento.id_evento }}">
+
                     <div class="form-floating mb-3">
                         <input type="date" class="form-control" id="i_data" name="n_data" value="{{ evento.data_evento }}">
                         <label for="i_data">Data do evento</label>
