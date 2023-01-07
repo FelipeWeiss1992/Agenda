@@ -70,6 +70,7 @@ app
 |   ├── index.html
 |   ├── listar_eventos.html
 |   ├── login.html
+|   ├── perfil.html
 |   ├── registro.html
 |   └── sobre.html
 ├── views
@@ -124,3 +125,6 @@ Definir nomenclatura das variáveis
     com uma casa decimal, (1, 2, 3, 4, 5, 6, 7, 8, 9). "Feito"
 
  => Colocar required nos input HTML.
+
+ => Colocar essa linha (<input type="hidden" name="proximo" value="{{ proximo or url_for('calendario') }}">)
+    para qunado fazer o login ser direcionado para a página especifica.
