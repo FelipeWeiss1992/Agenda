@@ -13,28 +13,20 @@ p, li {
     font-size: 14px;
 }
 
-/* Barra de navegação */
-
-header, .navbar {
-    background-color: #353d41;
-}
+/* Header Barra de navegação */
 
 #nav-container {
     padding-top: 0;
     padding-bottom: 0;
 }
 
+header, .navbar {
+    background-color: #353d41;
+}
+
 #logo {
-    width: 75px;
-}
-
-.navbar-brand {
+    width: 100px;
     padding: 0;
-    color: #ffffff;
-}
-
-.navbar-brand:hover {
-    color: #ffffff;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -43,6 +35,10 @@ header, .navbar {
 
 #nav {
     color: #ffffff;
+}
+
+#nav:hover{
+    color: #00008b;
 }
 
 /* main */
@@ -54,6 +50,8 @@ header, .navbar {
 #promo-area {
     margin-bottom: 25px;
 }
+
+
 
 
 
@@ -69,7 +67,7 @@ header, .navbar {
 }
 
 .contact-box {
-    padding: 25px 0;
+    padding: 20px 0;
     border-top: 1px solid #3ec1d5;
 }
 
@@ -78,9 +76,9 @@ header, .navbar {
     color: #444444;
     border: solid 1px #444444;
     border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    line-height: 55px;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
 }
 
 .contact-box p {
@@ -93,8 +91,7 @@ header, .navbar {
     color: #3ec1d5;
 }
 
-
-/* copy */
+/* Footer Copy */
 
 #copy-area {
     background-color: #f1f1f1;
