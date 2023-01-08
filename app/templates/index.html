@@ -14,23 +14,25 @@
     <body>
 
         <header>
-            <div class="container-fluid" id="nav-container">
-                <nav class="navbar navbar-expand-lg">
-                    <img id="logo" src="{{ url_for('static', filename='imagens/hall-9000.jpg') }}" alt="Hall-9000">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-links" aria-controls="navbar-links" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link" id="nav" href="/">Home</a>
-                            <a class="nav-item nav-link" id="nav" href="/calendario">Calendário</a>
-                            <a class="nav-item nav-link" id="nav" href="/sobre">Sobre</a>
-                            <a class="nav-item nav-link" id="nav" href="/{{ login_out }}">{{ login_out }}</a>
-                            <a class="nav-item nav-link" id="nav" href="/perfil">{{ usuario }}</a>
+            <div id="header-area">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg align-items-end">
+                        <img id="logo" src="{{ url_for('static', filename='imagens/hall-9000.jpg') }}" alt="Hall-9000">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-links" aria-controls="navbar-links" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse justify-content-end" id="navbar-links">
+                            <div class="navbar-nav ">
+                                <a class="nav-item nav-link" href="/">Home</a>
+                                <a class="nav-item nav-link" href="/calendario">Calendário</a>
+                                <a class="nav-item nav-link" href="/sobre">Sobre</a>
+                                <a class="nav-item nav-link" href="/{{ login_out }}">{{ login_out }}</a>
+                                <a class="nav-item nav-link" href="/perfil">{{ usuario }}</a>
+                            </div>
                         </div>
-                    </div>
-                </nav>
-            </div>
+                    </nav>
+                </div>
+            </div><!-- header-area -->
         </header>
 
         <main>
@@ -38,34 +40,13 @@
             {% block conteudo %}
 
             {% endblock conteudo %}
-            
+
         </main>
 
         <footer>
-            <div id="contact-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="main-title">Entre em contado conosco</h3>
-                        </div>
-                        <div class="col-md-4 contact-box">
-                            <i class="fas fa-phone"></i>
-                            <p><span class="contact-title">Ligue para:</span> (47)99991-3988</p>
-                            <p><span class="contact-title">Horários:</span> 8:00 - 19:00</p>
-                        </div>
-                        <div class="col-md-4 contact-box">
-                            <i class="fas fa-envelope"></i>
-                            <p><span class="contact-title">Envie um e-mail:</span> david.simas@gmail.com</p>
-                        </div>
-                        <div class="col-md-4 contact-box">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p><span class="contact-title">Venha tomar um café:</span> Rua Falsa, 123</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="copy-area">
-                <div class="container">
+
+            <div id="footer-area">
+                <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <p>Desenvolvido por David Simas &copy; 2022</p>

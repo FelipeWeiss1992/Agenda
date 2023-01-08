@@ -1,107 +1,64 @@
 /* Gerais */
-
-body {
-    font-family: 'Roboto', sans-serif;
-}
-
-.row {
+* {
     margin: 0;
+    padding: 0;
 }
 
-p, li {
-    color: #444444;
-    font-size: 14px;
-}
-
-/* Header Barra de navegação */
-
-#nav-container {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-header, .navbar {
-    background-color: #353d41;
+/* Header */
+#header-area {
+    background: #333333;
+    border-bottom: 1px solid #ff0000;
 }
 
 #logo {
     width: 100px;
-    padding: 0;
 }
 
-.navbar-expand-lg .navbar-nav .nav-link {
-    padding: 1rem .8rem;
+.nav-link {
+    border: 1px solid #9d9d9d;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
 }
 
-#nav {
+.nav-item {
+    color: #9d9d9d;
+}
+
+.nav-item:hover {
     color: #ffffff;
-}
-
-#nav:hover{
-    color: #00008b;
 }
 
 /* main */
 
-.container h3 {
-    margin-bottom: 25px;
+main {
+    background: #f1f1f1;
 }
 
-#promo-area {
-    margin-bottom: 25px;
-}
-
-
-
-
-
-/* Footer */
-
-#contact-area {
-    text-align: center;
-}
-
-#contact-area h3 {
+#main-area {
+    background: #ffffff;
+    box-shadow: 0px 0px 10px 0px #888888;
     padding: 10px 0;
-    margin-bottom: 0;
 }
 
-.contact-box {
-    padding: 20px 0;
-    border-top: 1px solid #3ec1d5;
+#card-primary:hover {
+    box-shadow: 0px 0px 10px 0px #0d6efd;
+}
+#card-success:hover {
+    box-shadow: 0px 0px 10px 0px #198754;
+
+}#card-warning:hover {
+    box-shadow: 0px 0px 10px 0px #ffc107;
 }
 
-.contact-box i {
-    margin-bottom: 10px;
-    color: #444444;
-    border: solid 1px #444444;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    line-height: 45px;
-}
-
-.contact-box p {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.contact-title {
-    font-weight: bold;
-    color: #3ec1d5;
-}
-
-/* Footer Copy */
-
-#copy-area {
-    background-color: #f1f1f1;
-}
-
-#copy-area .container {
+/* footer */
+#footer-area {
+    background: #555555;
     padding: 10px 0;
     text-align: center;
 }
 
-#copy-area .container p {
-    margin-bottom: 0;
+#footer-area p {
+    margin: 10px 0;
+    color: #ffffff;
 }
