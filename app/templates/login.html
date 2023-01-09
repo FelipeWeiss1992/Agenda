@@ -11,29 +11,38 @@
 
     <body>
 
-    <div class="container mt-5">
-        <div class="row align-items-center">
-            <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 border rounded bg-light" action="{{ url_for('autenticar') }}" method="post">
+        <div class="container" id="main-area">
 
-                    <input type="hidden" name="proximo" value="{{ proximo or url_for('calendario') }}">
+            <div class="container" id="conteudo-titulo">
+                <div class="text-center">
+                    <h2 class="my-3">Faça seu Login</h2>
+                </div>
+            </div><!-- container -->
+            <div class="container" id="conteudo-logino">
+            <div class="container mt-5">
+                <div class="row align-items-center">
+                    <div class="col-md-10 mx-auto col-lg-5">
+                        <form class="p-4 p-md-5 border rounded bg-light" action="{{ url_for('autenticar') }}" method="post">
 
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="i_usuario" name="n_usuario" placeholder="Username">
-                        <label for="i_usuario">Username</label>
+                            <input type="hidden" name="proximo" value="{{ proximo or url_for('calendario') }}">
+
+                            <div class="form mb-3">
+                                <label for="i_usuario">Username</label>
+                                <input type="text" class="form-control" id="i_usuario" name="n_usuario" placeholder="Username">
+                            </div>
+                            <div class="form mb-3">
+                                <label for="i_senha">Senha</label>
+                                <input type="password" class="form-control" id="i_senha" name="n_senha" placeholder="Senha">
+                            </div>
+                            <button type="submit" class="btn btn-success">Login</button>
+                            <button type="button" class="btn btn-primary" onclick = "window.location.href='/';">Voltar</button>
+                        </form>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="i_senha" name="n_senha" placeholder="Senha">
-                        <label for="i_senha">Senha</label>
-                    </div>
-                    <button type="submit" class="btn btn-md btn-success">Login</button>
-                    <button type="button" class="btn btn-md btn-warning" onclick = "window.location.href='{{ url_for('index') }}';">Cancelar</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    
     </body>
 </html>
