@@ -80,7 +80,7 @@ def logout():
 @app.route("/registro")
 def registro():
 
-    return render_template("registro.html", titulo = "Inscreva-se", oculto = "oculto" )
+    return render_template("registro.html", titulo = "Inscreva-se", login_out = "login", oculto = "oculto" )
 
 
 # Rota para cadastrar novo usuário.
