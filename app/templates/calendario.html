@@ -1,43 +1,55 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-        <main class="container">
+<div class="container" id="main-area">
 
-            <table class="table mt-5">
-
-                <thead>
-                    <tr>
-                      <th colspan="1" class="text-center"><a href="#"> < </a></th>
-                      <th colspan="5" class="text-center">{{ mes_ano }}</th>
-                      <th colspan="1" class="text-center"><a href="#"> > </a></th>
-                    </tr>
-                  </thead>
-
-                <tbody>
-                    <tr>
-                        {% for dias_ext in dias_da_semana %}
-                            <th scope="col" class="text-center">{{ dias_ext }}</th>
-                        {% endfor %}                    
-                    </tr>
-
-                    {% for semanas in calDays %}
+    <div class="container" id="#conteudo-titulo">
+        <div class="text-center">
+            <h2>Agende seus eventos</h2>
+            <p>Construa uma tabela de preços para seus potenciais clientes, com esse exemplo Bootstrap. Além do mais, é feito com componentes padrões, utilitários e um pouquinho de customização.</p>
+        </div>
+    </div><!-- container -->
+    <div class="container" id="#conteudo-calendario">
+        <div class="row">
+            <div id="tabela">
+                <table>
+                    <thead>
                         <tr>
-                        {% for dias in semanas %}
-                            {% if dias != 0 %}
-                                <td class="text-center" id="i_dia{{ dias }}" name="c_dia{{ dias }}"><a href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>
-                            {% else %}
-                                <td class="text-center" id="i_dia" name="c_dia"><a href="#">&nbsp;</a></td>
-                            {% endif %}
-                        {% endfor %}
+                        <th colspan="1" class="text-center"><a href="#"> < </a></th>
+                        <th colspan="5" class="text-center">{{ mes_ano }}</th>
+                        <th colspan="1" class="text-center"><a href="#"> > </a></th>
                         </tr>
-                    {% endfor %}            
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for dias_ext in dias_da_semana %}
+                                <th scope="col" class="text-center">{{ dias_ext }}</th>
+                            {% endfor %}                    
+                        </tr>
 
+                        {% for semanas in calDays %}
+                            <tr>
+                            {% for dias in semanas %}
+                                {% if dias != 0 %}
+                                    <td class="text-center" id="i_dia" name="c_dia{{ dias }}"><a id="a_dia" href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>
+                                {% else %}
+                                    <td class="text-center" id="i_dia" name="c_dia"><a href="#">&nbsp;</a></td>
+                                {% endif %}
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}            
+                    </tbody>
+                </table>
+            </div><!-- col-4 -->
+        </div><!-- row -->
+    </div><!-- container -->
+    <div class="container">
+        <div class="row">
             <div>
-                <a href="/listar_eventos">Listar Eventos</a>
+                <button type="button" class="btn btn-md btn-primary" onclick = "window.location.href='/listar_eventos';">Listar Eventos</button>
             </div>
-
-        </main>
+        </div>
+    </div>
+</div><!-- main-area -->
         
 {% endblock %}

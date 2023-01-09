@@ -51,6 +51,55 @@ main {
     box-shadow: 0px 0px 10px 0px #ffc107;
 }
 
+/* calendario */
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+#tabela {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#tabela thead tr th {
+    border: 1px solid #ffc107;
+    border-radius: 15px;
+    height: 50px;
+
+}
+
+#tabela tbody tr th {
+    background: #0d6efd;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+
+}
+
+#tabela tbody tr td {
+    border: 1px solid #198754;
+    width: 50px;
+    height: 50px;
+}
+
+#tabela tbody tr td a {
+    text-decoration: none;
+}
+
+#tabela tbody tr td a:hover {
+    background: #0d6efd;
+}
+
+
+
+
+
+
+
+
 /* footer */
 #footer-area {
     background: #555555;
