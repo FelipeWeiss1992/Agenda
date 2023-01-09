@@ -17,9 +17,9 @@ def index():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
         
-        return render_template("home.html", titulo = "Agenda de Eventos", login_out = "login", usuario = "")
+        return render_template("home.html", titulo = "Agenda de Eventos", login_out = "login", usuario = "", oculto = "oculto")
     else:
-        return render_template("home.html", titulo = "Agenda de Eventos", login_out = "logout", usuario = session["usuario_logado"])
+        return render_template("home.html", titulo = "Agenda de Eventos", login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
 # Renderização da página sobre.html
@@ -28,9 +28,9 @@ def sobre():
 
     if "usuario_logado" not in session or session["usuario_logado"] is None:
         
-        return render_template("sobre.html", titulo = "Desenvolvedores", login_out = "login", usuario = "")
+        return render_template("sobre.html", titulo = "Desenvolvedores", login_out = "login", usuario = "", oculto = "oculto")
     else:
-        return render_template("sobre.html", titulo = "Desenvolvedores", login_out = "logout", usuario = session["usuario_logado"])
+        return render_template("sobre.html", titulo = "Desenvolvedores", login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
 # Renderização da página login.html
@@ -80,7 +80,7 @@ def logout():
 @app.route("/registro")
 def registro():
 
-    return render_template("registro.html", titulo = "Inscreva-se")
+    return render_template("registro.html", titulo = "Inscreva-se", oculto = "oculto" )
 
 
 # Rota para cadastrar novo usuário.
@@ -118,7 +118,7 @@ def perfil():
     else:
         lo_perfil = Usuario.query.filter_by(username = session["usuario_logado"]).first()
 
-        return render_template("perfil.html", titulo = "Editar Perfil", perfil = lo_perfil, login_out = "logout", usuario = session["usuario_logado"])
+        return render_template("perfil.html", titulo = "Editar Perfil", perfil = lo_perfil, login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
 # Rota para Atualizar perfil do Usuário.
@@ -179,7 +179,7 @@ def calendario():
         calDays = cal.monthdayscalendar(data.year, data.month)
         mes_ano = f"{str(datetime.datetime.now().strftime('%B'))} - {data.year}"
 
-        return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano, login_out = "logout", usuario = session["usuario_logado"]) 
+        return render_template("calendario.html", titulo = "Calendário de eventos", calDays = calDays, dias_da_semana = dias_da_semana, ano = data.year, mes = data.month, mes_ano = mes_ano, login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
 # Renderização da página evento.html
@@ -203,7 +203,7 @@ def evento(dia, mes, ano):
 
         lo_completo = f"{ano}-{lo_mes}-{lo_dia}"
 
-        return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo, login_out = "logout", usuario = session["usuario_logado"])
+        return render_template("evento.html", titulo = "Cadastro de eventos", data_completo = lo_completo, login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
 # Rota para cadastrar novo evento.
@@ -241,7 +241,7 @@ def listar_eventos():
 
         lo_eventos = Evento.query.filter_by(fk_usuario = lo_fk).order_by(Evento.data_evento)
         
-        return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos, login_out = "logout", usuario = session["usuario_logado"])
+        return render_template("listar_eventos.html", titulo = "Listar Eventos", eventos = lo_eventos, login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
 # Renderização da página editar_evento.html
@@ -254,7 +254,7 @@ def editar_evento(id):
     else:
         lo_eventos = Evento.query.filter_by(id_evento = id).first()
 
-        return render_template("editar_evento.html", titulo = "Editar Evento", evento = lo_eventos, login_out = "logout", usuario = session["usuario_logado"])
+        return render_template("editar_evento.html", titulo = "Editar Evento", evento = lo_eventos, login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
 # Rota para Atualizar Eventos.
