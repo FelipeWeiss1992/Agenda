@@ -5,6 +5,6 @@ SQLALCHEMY_DATABASE_URI = \
     SGBD = "postgresql",
     usuario = "postgres",
     senha = "123456",
-    servidor = "192.168.1.101:5432",
+    servidor = "192.168.1.100:5432",
     database = "postgres"
 )

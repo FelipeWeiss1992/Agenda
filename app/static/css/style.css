@@ -59,38 +59,42 @@ main {
 }
 
 #tabela {
-    margin-bottom: 50px;
+    margin: 50px 0;
     display: flex;
     justify-content: center;
 }
 
 #tabela thead tr th {
-    border: 1px solid #ffc107;
-    border-radius: 15px;
+    border: 1px solid #000000;
     height: 50px;
-
 }
 
 #tabela tbody tr th {
-    background: #0d6efd;
+    background: #b4d2ff;
     width: 50px;
     height: 50px;
-    border: 1px solid #000;
-
+    border: 1px solid #000000;
 }
 
-#tabela tbody tr td {
-    border: 1px solid #198754;
+#td_dia {
+    border: 1px solid #000000;
     width: 50px;
     height: 50px;
 }
 
-#tabela tbody tr td a {
+#td_dia:hover {
+    background: #b4d2ff;
+}
+
+#a_dia {
     text-decoration: none;
+    font-size: 1.8rem;
+    color:#000000;
 }
 
-#tabela tbody tr td a:hover {
-    background: #0d6efd;
+#a_dia:hover {
+    color: #080808;
+    text-shadow: 0px 0px 10px 0px #080808;
 }
 
 

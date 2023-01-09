@@ -31,9 +31,9 @@
                             <tr>
                             {% for dias in semanas %}
                                 {% if dias != 0 %}
-                                    <td class="text-center" id="i_dia" name="c_dia{{ dias }}"><a id="a_dia" href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>
+                                    <td class="text-center" id="td_dia" name="c_dia"><a id="a_dia" href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>
                                 {% else %}
-                                    <td class="text-center" id="i_dia" name="c_dia"><a href="#">&nbsp;</a></td>
+                                    <td class="text-center" id="td_dia" name="c_dia"><a id="a_dia{{ dias }}" href="#">&nbsp;</a></td>
                                 {% endif %}
                             {% endfor %}
                             </tr>
@@ -46,7 +46,7 @@
     <div class="container">
         <div class="row">
             <div>
-                <button type="button" class="btn btn-md btn-primary" onclick = "window.location.href='/listar_eventos';">Listar Eventos</button>
+                <button type="button" class="btn btn-md btn-primary my-3 mx-3" onclick = "window.location.href='/listar_eventos';">Listar Eventos</button>
             </div>
         </div>
     </div>
