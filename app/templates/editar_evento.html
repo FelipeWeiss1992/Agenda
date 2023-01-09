@@ -1,27 +1,43 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-    <div class="container mt-5">
-        <div class="row align-items-center">
-            <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 border rounded bg-light" action="{{ url_for('atualizar_evento') }}" method="post">
+    <div class="container" id="main-area">
 
-                    <input type="hidden" name="n_id" value="{{ evento.id_evento }}">
+        <div class="container" id="conteudo-titulo">
+            <div class="text-center">
+                <h2 class="mb-3">Editor de eventos</h2>
+                <p>Construa uma tabela de preços para seus potenciais clientes, com esse exemplo Bootstrap. Além do mais, é feito com componentes padrões, utilitários e um pouquinho de customização.</p>
+            </div>
+        </div><!-- container -->
+        <div class="container" id="conteudo-editar-evento">
+            <div class="row align-items-center">
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form class="p-4 p-md-5 border rounded bg-light" id="formulario" action="{{ url_for('atualizar_evento') }}" method="post">
 
-                    <div class="form-floating mb-3">
-                        <input type="date" class="form-control" id="i_data" name="n_data" value="{{ evento.data_evento }}">
-                        <label for="i_data">Data do evento</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="i_titulo" name="n_titulo" value="{{ evento.titulo }}">
-                        <label for="i_titulo">Título</label>
-                            </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="i_descricao" name="n_descricao" value="{{ evento.descricao }}">
-                        <label for="i_descricao">Descrição</label>
-                    </div>
-                    <button type="submit" class="btn btn-md btn-success">Salvar</button>
-                </form>
+                        <input type="hidden" name="n_id" value="{{ evento.id_evento }}">
+
+                        <div class="col-4 form mb-3">
+                            <label for="i_data">Data do evento</label>
+                            <input type="date" class="form-control" id="i_data" name="n_data" value="{{ evento.data_evento }}">
+                        </div>
+                        <div class="col-5 form mb-3">
+                            <label for="i_titulo">Título</label>
+                            <input type="text" class="form-control" id="i_titulo" name="n_titulo" value="{{ evento.titulo }}">
+                        </div>
+                        <div class="form mb-5">
+                            <label for="i_descricao">Descrição</label>
+                            <input type="text" class="form-control" id="i_descricao" name="n_descricao" value="{{ evento.descricao }}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <button type="button" class="btn btn-primary my-3 mx-3" onclick = "window.location.href='/listar_eventos';">Voltar</button>
+                </div>
             </div>
         </div>
     </div>
