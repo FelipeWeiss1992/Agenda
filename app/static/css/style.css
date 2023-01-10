@@ -121,7 +121,7 @@ main {
 #contato {
     text-align: center;
     padding: 15px;
-    border-top: 1px solid #3ec1d5;
+    border-top: 1px solid #0d6efd;
 }
 
 .contact-box i {
@@ -141,7 +141,7 @@ main {
 
 .contact-title {
     font-weight: bold;
-    color: #3ec1d5;
+    color: #0d6efd;
 }
 
 /* footer */
