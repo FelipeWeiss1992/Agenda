@@ -77,48 +77,58 @@ main {
 
 /* calendario */
 
-.row {
+#div_tabela {
     display: flex;
     justify-content: center;
 }
 
 #tabela {
-    margin: 50px 0;
-    display: flex;
-    justify-content: center;
+    font-size: 1.3rem;
+    border: 1px solid #808080;
+    box-shadow: 0px 0px 10px 0px #808080;
+    background-color: #dbe5f5;
 }
 
-#tabela thead tr th {
-    border: 1px solid #000000;
-    height: 50px;
-}
-
-#tabela tbody tr th {
-    background: #b4d2ff;
+#th_mes_ano {
+    border: 2   px solid #808080;
+    background-color: #b8b8b8;
     width: 50px;
     height: 50px;
-    border: 1px solid #000000;
+}
+
+#a_mes_ano {
+    text-decoration: none;
+    color: #000000;
+}
+
+#tabela_body {
+    background-color: #f8f9fb;
+}
+
+#th_dia_semana {
+    background-color: #e8e9eb;
+    font-size: 1.1rem;
+    color: #1B365C;
+    width: 50px;
+    height: 50px;
 }
 
 #td_dia {
-    border: 1px solid #000000;
+    background-color: #b1b1b1;
     width: 50px;
     height: 50px;
-}
-
-#td_dia:hover {
-    background: #b4d2ff;
+    border-radius: 50%;
 }
 
 #a_dia {
     text-decoration: none;
-    font-size: 1.8rem;
-    color:#000000;
+    color: #000000;
 }
 
 #a_dia:hover {
-    color: #080808;
-    text-shadow: 0px 0px 10px 0px #080808;
+    text-shadow: 0px 0px 20px rgb(255, 0, 13);
+    color: rgb(17, 17, 231);
+
 }
 
 /* contato */
