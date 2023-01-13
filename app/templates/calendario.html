@@ -1,43 +1,57 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-        <main class="container">
+<div class="container" id="main-area">
 
-            <table class="table mt-5">
-
-                <thead>
-                    <tr>
-                      <th colspan="1" class="text-center"><a href="#"> < </a></th>
-                      <th colspan="5" class="text-center">{{ mes_ano }}</th>
-                      <th colspan="1" class="text-center"><a href="#"> > </a></th>
-                    </tr>
-                  </thead>
-
-                <tbody>
-                    <tr>
-                        {% for dias_ext in dias_da_semana %}
-                            <th scope="col" class="text-center">{{ dias_ext }}</th>
-                        {% endfor %}                    
-                    </tr>
-
-                    {% for semanas in calDays %}
-                        <tr>
-                        {% for dias in semanas %}
-                            {% if dias != 0 %}
-                                <td class="text-center" id="i_dia{{ dias }}" name="c_dia{{ dias }}"><a href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>
-                            {% else %}
-                                <td class="text-center" id="i_dia" name="c_dia"><a href="#">&nbsp;</a></td>
-                            {% endif %}
-                        {% endfor %}
-                        </tr>
-                    {% endfor %}            
-                </tbody>
-            </table>
-
-            <div>
-                <a href="/listar_eventos">Listar Eventos</a>
+    <div class="container" id="conteudo-titulo">
+        <div class="text-center">
+            <h2 class="my-3">Agende seus eventos</h2>
+            <div class="row justify-content-center">
+                <p class="col-8">Apesar do seu tempo e atenção terem limite, a demanda pelo seu tempo e atenção são infinitas.</p>
             </div>
+        </div>
+    </div><!-- container -->
+    <div class="container" id="conteudo-calendario">
+        <div class="row justify-content-center">
+            <div class="col-8" id="div_tabela">
+                <table id="tabela">
+                    <thead id="tabela_thead">
+                        <tr id="tr_thead">
+                        <th colspan="1" class="text-center" id="th_mes_ano"><a id="a_mes_ano" href="#"> < </a></th>
+                        <th colspan="5" class="text-center" id="th_mes_ano">{{ mes_ano }}</th>
+                        <th colspan="1" class="text-center" id="th_mes_ano"><a id="a_mes_ano" href="#"> > </a></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabela_body">
+                        <tr>
+                            {% for dias_ext in dias_da_semana %}
+                                <th scope="col" class="text-center" id="th_dia_semana">{{ dias_ext }}</th>
+                            {% endfor %}                    
+                        </tr>
 
-        </main>
+                        {% for semanas in calDays %}
+                            <tr>
+                            {% for dias in semanas %}
+                                {% if dias != 0 %}
+                                    <td class="text-center" id="td_dia" name="c_dia"><a id="a_dia" href="/evento/{{ dias }}/{{ mes }}/{{ ano }}">{{ dias }}</a></td>
+                                {% else %}
+                                    <td class="text-center" id="td_dia" name="c_dia"><a id="a_dia{{ dias }}" href="#">&nbsp;</a></td>
+                                {% endif %}
+                            {% endfor %}
+                            </tr>
+                        {% endfor %}            
+                    </tbody>
+                </table>
+            </div><!-- col-4 -->
+        </div><!-- row -->
+    </div><!-- container -->
+    <div class="container">
+        <div class="row">
+            <div>
+                <button type="button" class="btn btn-md btn-primary my-3 mx-3" onclick = "window.location.href='/listar_eventos';">Listar Eventos</button>
+            </div>
+        </div>
+    </div>
+</div><!-- main-area -->
         
 {% endblock %}

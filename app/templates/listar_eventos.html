@@ -1,7 +1,17 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-        <main class="container">
+    <div class="container" id="main-area">
+
+        <div class="container" id="conteudo-titulo">
+            <div class="text-center">
+                <h2 class="my-3">Sua lista de eventos</h2>
+                <div class="row justify-content-center">
+                    <p class="col-8">Visualise a tabela de eventos para não esquecer de seus compromissos. Além do mais, você pode editá-los ou deletá-los.</p>
+                </div>
+            </div>
+        </div><!-- container -->
+        <div class="container" id="conteudo-lista_eventos">
 
             <table class="table table-hover">
                 <thead>
@@ -20,15 +30,22 @@
                         <td>{{ evento.descricao }}</td>
                     
                         <td>
-                            <a href="{{ url_for('editar_evento', id=evento.id_evento ) }}">Editar</a> |
-                            <a href="{{ url_for('deletar_evento', id=evento.id_evento ) }}">Deletar</a>
+                            <a class="btn btn-success btn-sm" href="{{ url_for('editar_evento', id=evento.id_evento ) }}">Editar</a>
+                            <a class="btn btn-danger btn-sm" href="{{ url_for('deletar_evento', id=evento.id_evento ) }}">Deletar</a>
                         </td>
                     </tr>
                     {% endfor %}
     
                 </tbody>
             </table>
-
-        </main>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div>
+                    <button type="button" class="btn btn-md btn-primary my-3 mx-3" onclick = "window.location.href='/calendario';">Voltar</button>
+                </div>
+            </div>
+        </div>
+    </div>
         
 {% endblock %}

@@ -1,25 +1,40 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-        <main class="container">
+    <div class="container" id="main-area">
 
-                <form action="{{ url_for('cadastrar_evento') }}" method="post">                                          
+        <div class="container" id="conteudo-titulo">
+            <div class="text-center">
+                <h2 class="my-3">Agende seu evento</h2>
+                <div class="row align-items-center">
+                    <p class="col-8">Organiza a sua agenda, ganhe tempo com propriedade. Realize cada evento no seu respectivo momento
+                    . Um após outro, com calma e continuamente.</p>
+                </div>
+            </div>
+        </div><!-- container -->
+        <div class="container" id="conteudo-evento">
+            <div class="row align-items-center">
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form class="p-4 p-md-5 border rounded bg-light" action="{{ url_for('cadastrar_evento') }}" method="post">
 
-                        <div class="form-group col-md-3">
-                                <label for="i_data">Data do evento</label> <!-- A data deverá vir do sistema -->
-                                <input type="date" class="form-control" id="i_data" name="n_data" value="{{ data_completo }}"><!--Padrão yyyy-mm-dd -->
+                        <div class="col-4 form mb-3">
+                            <label for="i_data">Data do evento</label> <!-- A data deverá vir do sistema -->
+                            <input type="date" class="form-control" id="i_data" name="n_data" value="{{ data_completo }}"><!--Padrão yyyy-mm-dd -->
                         </div>
-                        <div class="form-group col-md-2">
-                                <label for="i_titulo">Título</label>
-                                <input type="text" class="form-control" id="i_titulo" name="n_titulo" placeholder="Título">
+                        <div class="col-5 form mb-3">
+                            <label for="i_titulo">Título</label>
+                            <input type="text" class="form-control" id="i_titulo" name="n_titulo" placeholder="Título">
                         </div>
-                        <div class="form-group col-md-2">
-                                <label for="i_descricao">Descrição</label>
-                                <input type="text" class="form-control" id="i_descricao" name="n_descricao" placeholder="Descrição">
+                        <div class="form mb-3">
+                            <label for="i_descricao">Descrição</label>
+                            <input type="text" class="form-control" id="i_descricao" name="n_descricao" placeholder="Descrição">
                         </div>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                </form>
-
-        </main>
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <button type="button" class="btn btn-primary" onclick = "window.location.href='/calendario';">Voltar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
         
 {% endblock %}

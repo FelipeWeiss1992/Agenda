@@ -1,19 +1,81 @@
 {% extends "index.html" %}
 {% block conteudo %}
 
-        <main class="container">
+    <div class="container" id="main-area">
 
-            <div class="card-columns">
-
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src=".../100px180/?text=Image cap" alt="Imagem de capa do card">
-                    <div class="card-body">
-                      <h5 class="card-title">Título do card</h5>
-                      <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+        <div class="container" id="conteudo-titulo">
+            <div class="text-center">
+                <h2 class="my-3">Nosso time</h2>
+                <div class="row justify-content-center">
+                    <p class="col-8">Somos uma equipe especializada FULL-STACK em soluções WEB, estamos no mercado desde 2022 e, por isso,
+                        umas das equipes mais tradicionais da cidade de Blumenau. Estamos localizados na Rua falsa, de onde
+                        enviamos nossos produtos para atender aos clientes localizados em todas as regiões.</p>
+                    <p class="col-8">Nossa equipe, são especialistas em códigos que foram desenvolvidos e aprimoradas pela nossa equipe ao
+                        longo do +DEVs2BLU, Nosso objetivo é oferecer o melhor projeto para você.</p>
+                </div>
+            </div>
+        </div><!-- container -->
+        <div class="container" id="conteudo-sobre">
+            <div class="row">
+                <div class="col-3">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='imagens/profile-david.jpg') }}" alt="Jhon Doe">
+                        <div class="card-body">
+                            <h5 class="card-title">David Simas</h5>
+                            <p class="card-text">Software Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mb-5">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='imagens/profile-alien.jpg') }}" alt="Jhon Doe">
+                        <div class="card-body">
+                            <h5 class="card-title">Xenomorph Alien</h5>
+                            <p class="card-text">SEO Consultant</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mb-5">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='imagens/profile-chewbacca.jpg') }}" alt="Jhon Doe">
+                        <div class="card-body">
+                            <h5 class="card-title">Chewbacca</h5>
+                            <p class="card-text">Project Manager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 mb-5">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename='imagens/profile-predador.jpg') }}" alt="Jhon Doe">
+                        <div class="card-body">
+                            <h5 class="card-title">Predator</h5>
+                            <p class="card-text">UX/UI Designer</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="container" id="contato">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="main-title">Entre em contado conosco</h3>
+                </div>
+                <div class="col-md-4 contact-box">
+                    <i class="fas fa-phone"></i>
+                    <p><span class="contact-title">Ligue para:</span> (47)99991-3988</p>
+                    <p><span class="contact-title">Horários:</span> 8:00 - 19:00</p>
+                </div>
+                <div class="col-md-4 contact-box">
+                    <i class="fas fa-envelope"></i>
+                    <p><span class="contact-title">Envie um e-mail:</span> sua.agenda@gmail.com</p>
+                </div>
+                <div class="col-md-4 contact-box">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p><span class="contact-title">Venha tomar um café:</span> Rua Falsa, 123</p>
+                </div>
+            </div>
+        </div>
 
-        </main>
 
 {% endblock %}
