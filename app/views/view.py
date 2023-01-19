@@ -22,16 +22,6 @@ def index():
         return render_template("home.html", titulo = "Agenda de Eventos", login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
 
 
-# Renderização da página sobre.html
-@app.route("/sobre")
-def sobre():
-
-    if "usuario_logado" not in session or session["usuario_logado"] is None:
-        
-        return render_template("sobre.html", titulo = "Desenvolvedores", login_out = "login", usuario = "", oculto = "oculto")
-    else:
-        return render_template("sobre.html", titulo = "Desenvolvedores", login_out = "logout", usuario = session["usuario_logado"], oculto = "visivel")
-
 
 # Renderização da página login.html
 @app.route("/login")
